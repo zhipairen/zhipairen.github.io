@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/08/31/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/17/了解加密-编码-解密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="terry">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-2/08/31/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018-2/09/17/了解加密-编码-解密/" itemprop="url">了解加密|编码|解密</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-31T13:56:06+08:00">
-                2018-08-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T16:51:18+08:00">
+                2018-09-17
               </time>
             
 
@@ -304,6 +304,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/信息处理/" itemprop="url" rel="index">
+                    <span itemprop="name">信息处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -334,15 +367,499 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h3 id="编码（encoding"><a href="#编码（encoding" class="headerlink" title="编码（encoding)"></a>编码（encoding)</h3><p><strong>概念</strong><br>编码本质上是 <strong>信息形式的转化</strong>,可通过解码还原原始信息；<br><strong>目的</strong><br>将信息转化为统一的格式，方便在不同系统之间传输。<br><strong>常见列子</strong><br>ASCII(网络只能传输二进制)、Unicode、 URL ENcoding、Base64</p>
+<h3 id="摘要-digest"><a href="#摘要-digest" class="headerlink" title="摘要(digest)"></a>摘要(digest)</h3><p><strong>概念</strong><br>摘要是通过 <strong>散列函数对信息运算生成固定大小的’指纹’</strong>,不可被还原。<br><strong>目的</strong><br>相同信息生成的摘要总是相同的，所以可校验信息的完整性，防止信息被篡改。<br><strong>常见例子</strong><br>MD5(单向散列算法), SHA(安全散列算法), MAC(信息认证代码)<br>散列算法：不可逆，防冲突</p>
+<h3 id="加密-encryption"><a href="#加密-encryption" class="headerlink" title="加密(encryption)"></a>加密(encryption)</h3><p><strong>概念</strong><br>加密是 <strong>将明文信息转为难以读取的密文内容，使其不可读</strong>, 可通过密钥还原<br><strong>目的</strong><br>加密是为了保证信息安全，无正确密钥的无法解密出信息内容</p>
+<h4 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h4><ul>
+<li>分为两类：对称加密和非对称加密(速度更慢)。</li>
+<li><a href="https://blog.csdn.net/zuiyuezhou888/article/details/7557048" target="_blank" rel="noopener">常见加密算法</a><br><strong>对称加密</strong><br>加密和解密均采用同一密钥，通信双方都需要该钥匙。<br>常见算法: DES、3DES、AES(高级加密标准)</li>
+</ul>
+<hr>
+<p><strong>非对称加密</strong><br>加密采用公钥，解密采用私钥，是一对不同的钥匙。<br>常见算法: RSA(因子分解)、DSA(数字签名)、ECC(椭圆曲线密码更优)</p>
+<blockquote>
+<p>注意：通常采用非对称算法管理对称算法的密钥，用对称算法加密数据，这样既实现对称加密速度快的优点，又实现安全管理对称密钥的优点<br><a href="https://baike.baidu.com/item/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E7%B3%BB" target="_blank" rel="noopener">公开密钥密码体系</a><br>证书：将公钥和公钥主人联系在一起，再请权威机构（CA)确认，加上该权威机构的签名(分配的公钥和主人信息经机构私钥加密)，形成证书。<br>CA: 签发证书(可信任的签字)，提供一个可信任的公钥，还是证书和密钥的管理</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/13/koa学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/13/koa学习笔记/" itemprop="url">koa学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:09:56+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/" itemprop="url" rel="index">
+                    <span itemprop="name">node后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/koa/" itemprop="url" rel="index">
+                    <span itemprop="name">koa</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/09/17/了解babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/09/17/了解babel/" itemprop="url">了解babel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T15:01:54+08:00">
+                2017-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；<br><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
+<ul>
+<li>plugins: es6+新语法(箭头函数,class)转译</li>
+<li>polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api<h4 id="基础建设"><a href="#基础建设" class="headerlink" title="基础建设"></a>基础建设</h4></li>
+<li><p>安装 babel cli 和env preset</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-cli babel-preset-env</span><br><span class="line">或 yarn add --save-dev babel-cli babel-preset-env</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 .babelrc文件（或package.json增加babel属性）</p>
+<h4 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h4><p>核心依赖包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ast: 抽象语法树</span><br><span class="line">babel.transform(code, options) <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line"></span><br><span class="line">babel.transformFile(<span class="string">"filename.js"</span>, options, <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  result; <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 给定一个ast进行转换</span></span><br><span class="line"><span class="keyword">const</span> &#123; code, map, ast &#125; = babel.transformFromAst(ast, code, options);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="babel"><a href="#babel" class="headerlink" title=".babel"></a>.babel</h4><p><strong>presets(预设)</strong><br>presets是一系列插件的集合，官方唯一推荐preset: babel-preset-env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&quot;env&quot;, &#123;</span><br><span class="line">            &quot;targets&quot;: &#123; // 指定要转译的环境</span><br><span class="line">                &quot;browsers&quot;: [...],</span><br><span class="line">                &quot;node&quot;: &quot;8&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;modules&quot;: &apos;commonjs&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>plugins</strong><br>plugins插件列表：</p>
+<ul>
+<li>transform-runtime：所有的 helper 都会引用模块 babel-runtime，以避免编译输出的重复问题；避免污染全局作用域；注意：babel-runtime 作为依赖</li>
+</ul>
+<blockquote>
+<p>在浏览器引入 <a href="https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）" target="_blank" rel="noopener">https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/09/13/服务端渲染ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/09/13/服务端渲染ssr/" itemprop="url">服务端渲染ssr</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T11:13:23+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/ssr/" itemprop="url" rel="index">
+                    <span itemprop="name">ssr</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.jianshu.com/p/47c8e364d0bc?appinstall=1&amp;mType=Group" target="_blank" rel="noopener">react零搭建SSR</a></p>
+<ul>
+<li>生成首页骨架内容，转为字符串html,减少首页白屏时间</li>
+<li>有利于SEO</li>
+</ul>
 
           
         
@@ -576,7 +1093,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +1104,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -598,7 +1115,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
