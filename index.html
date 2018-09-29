@@ -388,10 +388,9 @@
 <li>Readable stream是消费数据的源的抽象，eg: fs.createReadStream()</li>
 <li>Writable stream是可以写入数据的目标的抽象，eg: fs.createWriteStream()</li>
 <li>Duplex streams是可读和可写的，eg: TCP 套接字(socket)</li>
-<li>Transform stream基本上是双工流，可用于在写入和读取数据时修改或变换数据。eg:使用gzip压缩数据的zlib.createGzip流。 您可以将变换流视为一个函数，其中输入是可写流部分，输出是可读流部分。 您可能还会听到称为“直通流”的变换流。</li>
+<li>Transform stream基本上是双工流，可用于在写入和读取数据时修改或变换数据。eg:使用gzip压缩数据的zlib.createGzip流。 您可以将变换流视为一个函数，其中输入是可写流部分，输出是可读流部分。 您可能还会听到称为“直通流”的变换流。<br><img src="/images/node-streams.png" alt="node streams"><br>所有流都是EventEmitter的实例。 它们发出可用于读取和写入数据的事件。 但是，我们可以使用管道方法以更简单的方式使用流数据。<br><strong>pipe方法</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readableSrc.pipe(writableDest)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<hr>
-<p> 所有流都是EventEmitter的实例。 它们发出可用于读取和写入数据的事件。 但是，我们可以使用管道方法以更简单的方式使用流数据。<br><strong>pipe方法</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readableSrc.pipe(writableDest)</span><br></pre></td></tr></table></figure></p>
 <p>以可读的数据源作为输出，以可写的目标作为输入<br><strong>stream events</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/// readable.pipe(writable)</span></span><br><span class="line">readable.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">  writable.write(chunk);</span><br><span class="line">&#125;);</span><br><span class="line">readable.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">  writable.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>流可以直接被事件消费。<em>注： event和pipe两者都能消费流，但不能同时存在</em><br>常用的重要流事件：</p>
 <ul>

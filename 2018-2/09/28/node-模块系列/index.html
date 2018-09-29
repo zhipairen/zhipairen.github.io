@@ -87,12 +87,13 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="Buffer概念在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Buffer.from(data) // data包含： string, array, buff">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/node-streams.png">
 <meta property="og:image" content="http://yoursite.com/images/readable-stream.png">
-<meta property="og:updated_time" content="2018-09-29T09:00:37.000Z">
+<meta property="og:updated_time" content="2018-09-29T09:27:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node 模块系列">
 <meta name="twitter:description" content="Buffer概念在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Buffer.from(data) // data包含： string, array, buff">
-<meta name="twitter:image" content="http://yoursite.com/images/readable-stream.png">
+<meta name="twitter:image" content="http://yoursite.com/images/node-streams.png">
 
 
 
@@ -386,10 +387,9 @@
 <li>Readable stream是消费数据的源的抽象，eg: fs.createReadStream()</li>
 <li>Writable stream是可以写入数据的目标的抽象，eg: fs.createWriteStream()</li>
 <li>Duplex streams是可读和可写的，eg: TCP 套接字(socket)</li>
-<li>Transform stream基本上是双工流，可用于在写入和读取数据时修改或变换数据。eg:使用gzip压缩数据的zlib.createGzip流。 您可以将变换流视为一个函数，其中输入是可写流部分，输出是可读流部分。 您可能还会听到称为“直通流”的变换流。</li>
+<li>Transform stream基本上是双工流，可用于在写入和读取数据时修改或变换数据。eg:使用gzip压缩数据的zlib.createGzip流。 您可以将变换流视为一个函数，其中输入是可写流部分，输出是可读流部分。 您可能还会听到称为“直通流”的变换流。<br><img src="/images/node-streams.png" alt="node streams"><br>所有流都是EventEmitter的实例。 它们发出可用于读取和写入数据的事件。 但是，我们可以使用管道方法以更简单的方式使用流数据。<br><strong>pipe方法</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readableSrc.pipe(writableDest)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<hr>
-<p> 所有流都是EventEmitter的实例。 它们发出可用于读取和写入数据的事件。 但是，我们可以使用管道方法以更简单的方式使用流数据。<br><strong>pipe方法</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readableSrc.pipe(writableDest)</span><br></pre></td></tr></table></figure></p>
 <p>以可读的数据源作为输出，以可写的目标作为输入<br><strong>stream events</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/// readable.pipe(writable)</span></span><br><span class="line">readable.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">  writable.write(chunk);</span><br><span class="line">&#125;);</span><br><span class="line">readable.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">  writable.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>流可以直接被事件消费。<em>注： event和pipe两者都能消费流，但不能同时存在</em><br>常用的重要流事件：</p>
 <ul>
