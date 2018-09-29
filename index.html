@@ -263,6 +263,484 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/28/node-模块系列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/28/node-模块系列/" itemprop="url">node 模块系列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T16:28:01+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/模块/" itemprop="url" rel="index">
+                    <span itemprop="name">模块</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)<br>表现形式类似整数数组：eg: <buffer 01="" ff=""></buffer></p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)</p>
+<ul>
+<li><p>存储已确定数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Buffer.from(data) <span class="comment">// data包含： string, array, buffer, arrayBuffer, or array-like obj</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>未确定数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Buffer.alloc(size) <span class="comment">// 会用fill(0)填充已分配的内存，速度稍慢，但安全</span></span><br><span class="line">Buffer.allocUnsafe(size) <span class="comment">// 小于4kb,该方法会从之前的预分配的buffer里slice空间</span></span><br><span class="line">Buffer.allocUnsafeSlow(size)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>注： new Buffer(xxx)已不推荐</em></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>具体使用api请查阅文档<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = Buffer.from(<span class="string">'test'</span>);</span><br><span class="line">buf.toString(<span class="string">'utf8'</span>); <span class="comment">// 常用编码包括： utf8, hex(字节编码为两个十六进制字符), asscii</span></span><br><span class="line">buf.copay(target);</span><br><span class="line">buf.includes(value);</span><br><span class="line">buf.indexof(value);</span><br><span class="line">buf.slice(start,end);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h3><blockquote>
+<p><a href="https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93" target="_blank" rel="noopener"> Everything you need to know about streams</a></p>
+</blockquote>
+<h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>Streams(流)是数据的集合-就像数组或字符一样；<br>不同的处在于流可能不会一次全部处理,而且它们不适合内存；在处理但数据或者外部源的数据chunk(块)的时候，流可以发挥巨大能量。<br>流不仅能处理大数据，还可以在代码提供可组织性的能力，像管道一样进行组合。<br><em>注意：node本身缓存有限制</em></p>
+<h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><p>在node里四种基本的流： Readable(可读)、Writable(可写)、Duplex(双工)、Transform(变换) streams</p>
+<ul>
+<li>Readable stream是消费数据的源的抽象，eg: fs.createReadStream()</li>
+<li>Writable stream是可以写入数据的目标的抽象，eg: fs.createWriteStream()</li>
+<li>Duplex streams是可读和可写的，eg: TCP 套接字(socket)</li>
+<li>Transform stream基本上是双工流，可用于在写入和读取数据时修改或变换数据。eg:使用gzip压缩数据的zlib.createGzip流。 您可以将变换流视为一个函数，其中输入是可写流部分，输出是可读流部分。 您可能还会听到称为“直通流”的变换流。</li>
+</ul>
+<hr>
+<p> 所有流都是EventEmitter的实例。 它们发出可用于读取和写入数据的事件。 但是，我们可以使用管道方法以更简单的方式使用流数据。<br><strong>pipe方法</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readableSrc.pipe(writableDest)</span><br></pre></td></tr></table></figure></p>
+<p>以可读的数据源作为输出，以可写的目标作为输入<br><strong>stream events</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/// readable.pipe(writable)</span></span><br><span class="line">readable.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">  writable.write(chunk);</span><br><span class="line">&#125;);</span><br><span class="line">readable.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">  writable.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>流可以直接被事件消费。<em>注： event和pipe两者都能消费流，但不能同时存在</em><br>常用的重要流事件：</p>
+<ul>
+<li>可读流：data事件(消费数据中)、end事件(没有更多数据供流消费)</li>
+<li>可写流： drain事件(可写流能继续接收更多数据的标识)、finish事件</li>
+</ul>
+<p><strong>可读流的暂停和流动模式</strong><br>可读流有两种主要模式：paused(暂停) mode 、 flowing(流动) mode;有时候被简称为 pull 和 push modes.</p>
+<p>默认情况下，可读流以暂停模式启动，但是可以很容易变换为流动模式，有时，模式切换可自动发生。</p>
+<p>当可读流在paused模式下，可以用 <em>read()</em> 方法按需读取流；但是，在flowing模式下，数据不断流动，<em>必须通过监听事件的方式去消费它</em>。<br>在flowing模式下，如果没有消费处理数据，实际上数据可能会丢失，也就是我们需要<em>data</em>事件处理。实际上，当增加了data事件处理就可以把暂停模式切换为流动模式，并且移除data事件处理程序的话会将流切换回暂停模式。<br>如果要在这两种流模式之间手动切换，可以使用resume（）和pause（）方法。<br><img src="/images/readable-stream.png" alt="可读流"><br>当用pipe处理可读流时，不用担心模式问题，管道pipe会自动管理好它们。</p>
+<h4 id="实现流"><a href="#实现流" class="headerlink" title="实现流"></a>实现流</h4><p>有两个主要的task: 1. 实现流 2. 消费流<br><strong>实现一个可写流</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Writable &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"><span class="keyword">const</span> outStream = <span class="keyword">new</span> Writable(&#123; <span class="comment">// options: write函数暴露要写入的数据块</span></span><br><span class="line">  write(chunk, encoding, callback) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(chunk.toString());</span><br><span class="line">    callback();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// chunk通常为buffer encoding 编码可忽略</span></span><br><span class="line">process.stdin.pipe(outStream); <span class="comment">// 进程输入的内容将使用outStream回显</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于下面</span></span><br><span class="line">process.stdin.pipe(process.stdout);</span><br></pre></td></tr></table></figure></p>
+<p><strong>实现一个可读流</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Readable &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>); </span><br><span class="line"><span class="keyword">const</span> inStream = <span class="keyword">new</span> Readable(&#123;</span><br><span class="line">  read(size) &#123;....&#125;</span><br><span class="line">&#125;);</span><br><span class="line">inStream.push(<span class="string">'ABCDEFGHIJKLM'</span>);</span><br><span class="line">inStream.push(<span class="string">'NOPQRSTUVWXYZ'</span>);</span><br><span class="line">inStream.push(<span class="literal">null</span>); <span class="comment">// No more data</span></span><br><span class="line">inStream.pipe(process.stdout); <span class="comment">// 其实没啥特别的应用</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>实现双工或变换流</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Duplex &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> inoutStream = <span class="keyword">new</span> Duplex(&#123;</span><br><span class="line">  write(chunk, encoding, callback) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(chunk.toString());</span><br><span class="line">    callback();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  read(size) &#123;</span><br><span class="line">    <span class="keyword">this</span>.push(<span class="built_in">String</span>.fromCharCode(<span class="keyword">this</span>.currentCharCode++));</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.currentCharCode &gt; <span class="number">90</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.push(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">inoutStream.currentCharCode = <span class="number">65</span>;</span><br><span class="line">process.stdin.pipe(inoutStream).pipe(process.stdout);</span><br></pre></td></tr></table></figure></p>
+<p>重要的是要理解双工流的可读和可写侧完全独立地操作。 这仅仅是将两个特征分组到一个对象中。</p>
+<p><em>变换流是更有趣的双工流，因为其输出是根据其输入计算的.</em><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Transform &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> upperCaseTr = <span class="keyword">new</span> Transform(&#123;</span><br><span class="line">  transform(chunk, encoding, callback) &#123;</span><br><span class="line">    <span class="keyword">this</span>.push(chunk.toString().toUpperCase());</span><br><span class="line">    callback();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.stdin.pipe(upperCaseTr).pipe(process.stdout);</span><br></pre></td></tr></table></figure></p>
+<h4 id="流对象模型"><a href="#流对象模型" class="headerlink" title="流对象模型"></a>流对象模型</h4><p>默认情况下，流期望Buffer/String的值，可以设置objectMode标识，使流接收js对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eg: "a,b,c,d"转换为&#123;a:b,c:d&#125;</span></span><br><span class="line"><span class="keyword">const</span> &#123; Transform &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> commaSplitter = <span class="keyword">new</span> Transform(&#123;</span><br><span class="line">    readableObjectMode: <span class="literal">true</span>,</span><br><span class="line">    transform(chunk, encoding, callback)&#123;</span><br><span class="line">        <span class="keyword">this</span>.push(chunk.toString().trim().split(<span class="string">','</span>));</span><br><span class="line">        callback();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arrayToObject = <span class="keyword">new</span> Transform(&#123;</span><br><span class="line">    readableObjectMode: <span class="literal">true</span>,</span><br><span class="line">    writableObjectMode: <span class="literal">true</span>,</span><br><span class="line">    transform(chunk,encoding,callback)&#123;</span><br><span class="line">        <span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;chunk.length;i+=<span class="number">2</span>)&#123;</span><br><span class="line">            obj[chunk[i]] = chunk[i+<span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.push(obj);</span><br><span class="line">        callback();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objectToString = <span class="keyword">new</span> Transform(&#123;</span><br><span class="line">  writableObjectMode: <span class="literal">true</span>,</span><br><span class="line">  transform(chunk, encoding, callback) &#123;</span><br><span class="line">    <span class="keyword">this</span>.push(<span class="built_in">JSON</span>.stringify(chunk) + <span class="string">'\n'</span>);</span><br><span class="line">    callback();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.stdin</span><br><span class="line">  .pipe(commaSplitter)</span><br><span class="line">  .pipe(arrayToObject)</span><br><span class="line">  .pipe(objectToString)</span><br><span class="line">  .pipe(process.stdout)</span><br></pre></td></tr></table></figure></p>
+<p><strong>node内置的交换流</strong><br>内置的：zlib和crypto流<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> file = process.argv[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">fs.createReadStream(file)</span><br><span class="line"> .pipe(zlib.createGzip())</span><br><span class="line"> .pipe(fs.createWriteStream(file+<span class="string">'.gz'</span>));</span><br></pre></td></tr></table></figure></p>
+<p>自定义交换流<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>);</span><br><span class="line"><span class="keyword">const</span> file = process.argv[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; Transform &#125; = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reportProgress = <span class="keyword">new</span> Transform(&#123;</span><br><span class="line">  transform(chunk, encoding, callback) &#123;</span><br><span class="line">    process.stdout.write(<span class="string">'.'</span>);</span><br><span class="line">    callback(<span class="literal">null</span>, chunk);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fs.createReadStream(file) <span class="comment">// 读取 =》 压缩 =》 加密 =》 写入</span></span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .pipe(crypto.createCipher(<span class="string">'aes192'</span>, <span class="string">'a_secret'</span>)) <span class="comment">// 对chunk进行加密处理</span></span><br><span class="line">  .pipe(reportProgress)</span><br><span class="line">  .pipe(fs.createWriteStream(file + <span class="string">'.zz'</span>))</span><br><span class="line">  .on(<span class="string">'finish'</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">'Done'</span>));</span><br><span class="line">-------------</span><br><span class="line">fs.createReadStream(file) <span class="comment">// 读取 =》 解密=》解压 =》写入</span></span><br><span class="line">  .pipe(crypto.createDecipher(<span class="string">'aes192'</span>, <span class="string">'a_secret'</span>))</span><br><span class="line">  .pipe(zlib.createGunzip())</span><br><span class="line">  .pipe(reportProgress)</span><br><span class="line">  .pipe(fs.createWriteStream(file.slice(<span class="number">0</span>, <span class="number">-3</span>)))</span><br><span class="line">  .on(<span class="string">'finish'</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">'Done'</span>));</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/20/深入理解promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/20/深入理解promise/" itemprop="url">深入理解promise</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-20T15:02:46+08:00">
+                2018-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://zhuanlan.zhihu.com/p/29792886" target="_blank" rel="noopener">控制并发数</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 控制最大并发数,若有异步完成，则添加新异步</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseMax</span>(<span class="params">dataList, asyncHandle, limit</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> sequence = [].concat(dataList);</span><br><span class="line">  <span class="keyword">let</span> promises = [];</span><br><span class="line">  <span class="keyword">const</span> wrapHandler = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> promise = asyncHandle(data).then(<span class="function"><span class="params">()</span> =&gt;</span> (&#123; <span class="attr">index</span>: promise &#125;));</span><br><span class="line">    <span class="keyword">return</span> promise;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 并发请求到最大数</span></span><br><span class="line">  promises = sequence.splice(<span class="number">0</span>, limit).map(<span class="function"><span class="params">data</span> =&gt;</span> wrapHandler(data));</span><br><span class="line">  <span class="keyword">if</span> (sequence.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.all(promises);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sequence.reduce(<span class="function">(<span class="params">last, data</span>) =&gt;</span> last.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Promise</span>.race(promises)).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> pos = promises.findIndex(<span class="function"><span class="params">item</span> =&gt;</span> item === res.index);</span><br><span class="line">    promises.splice(pos, <span class="number">1</span>);</span><br><span class="line">    promises.push(wrapHandler(data));</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'并发请求数'</span>, promises);</span><br><span class="line">  &#125;), <span class="built_in">Promise</span>.resolve()).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'finish'</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/18/cb-promise-async异步进阶/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/18/cb-promise-async异步进阶/" itemprop="url">cb=>promise=>*=>async异步进阶</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T16:17:19+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/async/" itemprop="url" rel="index">
+                    <span itemprop="name">async</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://medium.freecodecamp.org/some-of-javascripts-most-useful-features-can-be-tricky-let-me-explain-them-4003d7bbed32" target="_blank" rel="noopener">rajaraodv explain</a><br><a href="https://medium.com/trabe/inside-promises-df4df6f9e972" target="_blank" rel="noopener">实现Promise</a><br><a href="https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5" target="_blank" rel="noopener">event loop</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(); <span class="comment">// Symbol: 不可变性，唯一性</span></span><br><span class="line"><span class="built_in">Symbol</span>.iterator; <span class="comment">// Symbol(Symbol.iterator)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">generator</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> k = <span class="keyword">yield</span> a+b;</span><br><span class="line">    <span class="keyword">let</span> m = <span class="keyword">yield</span> a+b+k;</span><br><span class="line">    <span class="keyword">yield</span> a+b+k+m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> gen = generator(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/13/koa学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -330,6 +808,158 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/node后端/koa/" itemprop="url" rel="index">
                     <span itemprop="name">koa</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/06/27/How-JavaScript-works-系列一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/06/27/How-JavaScript-works-系列一/" itemprop="url">How JavaScript works:系列一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-27T14:46:09+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/深入分析系列/" itemprop="url" rel="index">
+                    <span itemprop="name">深入分析系列</span>
                   </a>
                 </span>
 
@@ -584,178 +1214,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/09/17/了解babel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="terry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="纸牌人">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-2/09/17/了解babel/" itemprop="url">了解babel</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T15:01:54+08:00">
-                2017-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；<br><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
-<ul>
-<li>plugins: es6+新语法(箭头函数,class)转译</li>
-<li>polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api<h4 id="基础建设"><a href="#基础建设" class="headerlink" title="基础建设"></a>基础建设</h4></li>
-<li><p>安装 babel cli 和env preset</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-cli babel-preset-env</span><br><span class="line">或 yarn add --save-dev babel-cli babel-preset-env</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建 .babelrc文件（或package.json增加babel属性）</p>
-<h4 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h4><p>核心依赖包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ast: 抽象语法树</span><br><span class="line">babel.transform(code, options) <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line"></span><br><span class="line">babel.transformFile(<span class="string">"filename.js"</span>, options, <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  result; <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 给定一个ast进行转换</span></span><br><span class="line"><span class="keyword">const</span> &#123; code, map, ast &#125; = babel.transformFromAst(ast, code, options);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="babel"><a href="#babel" class="headerlink" title=".babel"></a>.babel</h4><p><strong>presets(预设)</strong><br>presets是一系列插件的集合，官方唯一推荐preset: babel-preset-env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&quot;env&quot;, &#123;</span><br><span class="line">            &quot;targets&quot;: &#123; // 指定要转译的环境</span><br><span class="line">                &quot;browsers&quot;: [...],</span><br><span class="line">                &quot;node&quot;: &quot;8&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;modules&quot;: &apos;commonjs&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>plugins</strong><br>plugins插件列表：</p>
-<ul>
-<li>transform-runtime：所有的 helper 都会引用模块 babel-runtime，以避免编译输出的重复问题；避免污染全局作用域；注意：babel-runtime 作为依赖</li>
-</ul>
-<blockquote>
-<p>在浏览器引入 <a href="https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）" target="_blank" rel="noopener">https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/09/13/服务端渲染ssr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -913,6 +1371,333 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/03/17/了解babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/03/17/了解babel/" itemprop="url">了解babel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T15:01:54+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；<br><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
+<ul>
+<li>plugins: es6+新语法(箭头函数,class)转译</li>
+<li>polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api<h4 id="基础建设"><a href="#基础建设" class="headerlink" title="基础建设"></a>基础建设</h4></li>
+<li><p>安装 babel cli 和env preset</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-cli babel-preset-env</span><br><span class="line">或 yarn add --save-dev babel-cli babel-preset-env</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 .babelrc文件（或package.json增加babel属性）</p>
+<h4 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h4><p>核心依赖包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ast: 抽象语法树</span><br><span class="line">babel.transform(code, options) <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line"></span><br><span class="line">babel.transformFile(<span class="string">"filename.js"</span>, options, <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  result; <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 给定一个ast进行转换</span></span><br><span class="line"><span class="keyword">const</span> &#123; code, map, ast &#125; = babel.transformFromAst(ast, code, options);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="babel"><a href="#babel" class="headerlink" title=".babel"></a>.babel</h4><p><strong>presets(预设)</strong><br>presets是一系列插件的集合，官方唯一推荐preset: babel-preset-env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&quot;env&quot;, &#123;</span><br><span class="line">            &quot;targets&quot;: &#123; // 指定要转译的环境</span><br><span class="line">                &quot;browsers&quot;: [...],</span><br><span class="line">                &quot;node&quot;: &quot;8&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;modules&quot;: &apos;commonjs&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>plugins</strong><br>plugins插件列表：</p>
+<ul>
+<li>transform-runtime：所有的 helper 都会引用模块 babel-runtime，以避免编译输出的重复问题；避免污染全局作用域；注意：babel-runtime 作为依赖</li>
+</ul>
+<blockquote>
+<p>在浏览器引入 <a href="https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）" target="_blank" rel="noopener">https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/11/19/css资源合集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016-2/11/19/css资源合集/" itemprop="url">css资源合集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-19T15:04:14+08:00">
+                2016-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="牛人总结集"><a href="#牛人总结集" class="headerlink" title="牛人总结集"></a>牛人总结集</h3><ul>
+<li><a href="https://lhammer.cn/You-need-to-know-css/#/" target="_blank" rel="noopener">常见css效果合集</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/08/31/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1017,7 +1802,9 @@
       
         
           
-            
+            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo1</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">    o2: &#123;</span><br><span class="line">        x: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = o1;</span><br><span class="line">o1= <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o1:'</span>, o1, <span class="string">'o3:'</span>, o3); <span class="comment">// o1: 1, o3: &#123;o2:&#123;x:1&#125;&#125; </span></span><br><span class="line"><span class="keyword">var</span> o4 = o3.o2;</span><br><span class="line">o3 = <span class="string">'aaa'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o4:'</span>, o4); <span class="comment">// o4: &#123;x:1&#125;</span></span><br><span class="line">o4 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>原型链理解</strong><br><img src="/images/prototype-1.png" alt="prototype-1"><br><img src="/images/prototype-2.png" alt="prototype-2"><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js 原型链</span></span><br><span class="line"><span class="comment">// prototype为函数Funciton的属性</span></span><br><span class="line"><span class="comment">// Foo, Object, String, Function等构造函数的原型为Function.prototype =&gt; Object.prototype =&gt; null</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'common'</span></span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123;</span><br><span class="line">    say()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`hello, my name <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I am common function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例foo的原型:'</span>, foo.__proto__ === Foo.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例obj的原型:'</span>, obj.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Foo的原型是否为Function.prototype:'</span>, Foo.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数test的原型是否为Function.prototype:'</span>, test.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Object的原型是否为Function.prototype:'</span>, <span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Function的原型是否为Function.prototype:'</span>, <span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Foo.prototype的原型:'</span>, Foo.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Object.prototype的原型:'</span>, <span class="built_in">Object</span>.prototype.__proto__); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Function.prototype的原型:'</span>, <span class="built_in">Function</span>.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1098,7 +1885,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1109,7 +1896,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1120,7 +1907,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

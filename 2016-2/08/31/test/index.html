@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="前后端开发笔记记录">
+<meta name="description" content="12345678910111213// demo1var o1 = &amp;#123;    o2: &amp;#123;        x: 1    &amp;#125;&amp;#125;;var o3 = o1;o1= 1;console.log(&apos;o1:&apos;, o1, &apos;o3:&apos;, o3); // o1: 1, o3: &amp;#123;o2:&amp;#123;x:1&amp;#125;&amp;#125; var o4 = o3.o2;o3 =">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="demos">
 <meta property="og:url" content="http://yoursite.com/2016-2/08/31/test/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="前后端开发笔记记录">
+<meta property="og:description" content="12345678910111213// demo1var o1 = &amp;#123;    o2: &amp;#123;        x: 1    &amp;#125;&amp;#125;;var o3 = o1;o1= 1;console.log(&apos;o1:&apos;, o1, &apos;o3:&apos;, o3); // o1: 1, o3: &amp;#123;o2:&amp;#123;x:1&amp;#125;&amp;#125; var o4 = o3.o2;o3 =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T02:48:39.000Z">
+<meta property="og:image" content="http://yoursite.com/images/prototype-1.png">
+<meta property="og:image" content="http://yoursite.com/images/prototype-2.png">
+<meta property="og:updated_time" content="2018-09-29T03:03:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="demos">
-<meta name="twitter:description" content="前后端开发笔记记录">
+<meta name="twitter:description" content="12345678910111213// demo1var o1 = &amp;#123;    o2: &amp;#123;        x: 1    &amp;#125;&amp;#125;;var o3 = o1;o1= 1;console.log(&apos;o1:&apos;, o1, &apos;o3:&apos;, o3); // o1: 1, o3: &amp;#123;o2:&amp;#123;x:1&amp;#125;&amp;#125; var o4 = o3.o2;o3 =">
+<meta name="twitter:image" content="http://yoursite.com/images/prototype-1.png">
 
 
 
@@ -363,7 +366,9 @@
       
 
       
-        
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo1</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">    o2: &#123;</span><br><span class="line">        x: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = o1;</span><br><span class="line">o1= <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o1:'</span>, o1, <span class="string">'o3:'</span>, o3); <span class="comment">// o1: 1, o3: &#123;o2:&#123;x:1&#125;&#125; </span></span><br><span class="line"><span class="keyword">var</span> o4 = o3.o2;</span><br><span class="line">o3 = <span class="string">'aaa'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o4:'</span>, o4); <span class="comment">// o4: &#123;x:1&#125;</span></span><br><span class="line">o4 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>原型链理解</strong><br><img src="/images/prototype-1.png" alt="prototype-1"><br><img src="/images/prototype-2.png" alt="prototype-2"><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js 原型链</span></span><br><span class="line"><span class="comment">// prototype为函数Funciton的属性</span></span><br><span class="line"><span class="comment">// Foo, Object, String, Function等构造函数的原型为Function.prototype =&gt; Object.prototype =&gt; null</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'common'</span></span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123;</span><br><span class="line">    say()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`hello, my name <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I am common function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例foo的原型:'</span>, foo.__proto__ === Foo.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例obj的原型:'</span>, obj.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Foo的原型是否为Function.prototype:'</span>, Foo.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数test的原型是否为Function.prototype:'</span>, test.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Object的原型是否为Function.prototype:'</span>, <span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Function的原型是否为Function.prototype:'</span>, <span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Foo.prototype的原型:'</span>, Foo.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Object.prototype的原型:'</span>, <span class="built_in">Object</span>.prototype.__proto__); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Function.prototype的原型:'</span>, <span class="built_in">Function</span>.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -399,8 +404,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-2/09/13/服务端渲染ssr/" rel="prev" title="服务端渲染ssr">
-                服务端渲染ssr <i class="fa fa-chevron-right"></i>
+              <a href="/2016-2/11/19/css资源合集/" rel="prev" title="css资源合集">
+                css资源合集 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -469,7 +474,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -480,7 +485,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -491,7 +496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
