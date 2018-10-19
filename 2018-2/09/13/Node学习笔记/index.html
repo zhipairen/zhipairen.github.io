@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)  字符，图像，视频都有关于如何转换或">
+<meta name="description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
 <meta name="keywords" content="node,koa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs">
 <meta property="og:url" content="http://yoursite.com/2018-2/09/13/Node学习笔记/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)  字符，图像，视频都有关于如何转换或">
+<meta property="og:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T10:40:43.000Z">
+<meta property="og:updated_time" content="2018-10-11T06:27:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs">
-<meta name="twitter:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)  字符，图像，视频都有关于如何转换或">
+<meta name="twitter:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
 
 
 
@@ -379,12 +379,18 @@
 </blockquote>
 <p>Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,<strong>使用事件驱动的非阻塞I/O模型，使其轻量且高效</strong>。</p>
 <blockquote>
-<p><a href="https://medium.freecodecamp.org/do-you-want-a-better-understanding-of-buffer-in-node-js-check-this-out-2e29de2968e8" target="_blank" rel="noopener">understanding of Buffer</a><br>更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)</p>
+<p><a href="https://medium.freecodecamp.org/do-you-want-a-better-understanding-of-buffer-in-node-js-check-this-out-2e29de2968e8" target="_blank" rel="noopener">understanding of Buffer, Streams, Binary data</a><br>更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)</p>
 </blockquote>
 <p>字符，图像，视频都有关于如何转换或编码将其存储在二进制文件中的规定规则，<em>在计算机中所有的数据类型都存储在二进制文件中，称为二进制数据</em></p>
 <ul>
-<li>字符集： Unicode, ASCII（字符映射的数字，eg: L =&gt; 76); 字符编码：UTF-8 (一个字节由几位bits,eg: 1Byte = 8 bit)</li>
+<li>字符集： Unicode, ASCII（字符映射的数字，eg: L =&gt; 76);</li>
+<li>字符编码：UTF-8 (一个字节由几位bits,eg: 1Byte = 8 bit)</li>
 </ul>
+<p>流：Node.js中的流只是意味着一段数据随着时间的推移从一个点移动到另一个点。整个概念是，您需要处理大量数据，但在开始处理之前无需等待所有数据可用。</p>
+<p>通常，数据的移动通常是为了处理或读取数据，并基于它做出决策。但是，随着时间的推移，流程可能需要的最小和最大数据量。<br>因此，如果数据到达的速率比进程消耗数据的速率快，则多余的数据需要在某处等待轮流进行处理;<br>另一方面，如果进程消耗的数据比它到达的速度快，那么早先到达的少数数据需要等待一定量的数据到达才能被发送出去进行处理。<br>那个“等候区”就是缓冲区！它是计算机中的一个小型物理位置，通常位于RAM中，数据在时间上被收集，等待，并最终在流式传输期间发送出去进行处理。</p>
+<p><em>我们可以将整个流和缓冲过程视为公交车站。在一些公交车站，在一定数量的乘客到达或直到特定的出发时间之前，不允许公共汽车离开。</em><br><em>此外，乘客可以以不同的速度到达不同的时间。乘客和公交车站都无法控制乘客到达车站。</em></p>
+<p><em>无论如何，总会有一个等待的地方。那是Buffer to Node.js！ Node.js无法控制数据到达的速度或时间，流的速度。它只能决定何时发送数据。如果还没有时间，</em><br><em>Node.js会将它们放入缓冲区(buffer) - “等待区” -  RAM中的一个小位置，直到将它们发送出去进行处理</em></p>
+<h3 id="构建api"><a href="#构建api" class="headerlink" title="构建api"></a>构建api</h3><p>前后端分离两大优势：1、 可重复使用的api 2、关注点分离</p>
 
       
     </div>
@@ -506,7 +512,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -517,7 +523,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -528,7 +534,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -577,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建api"><span class="nav-number">2.</span> <span class="nav-text">构建api</span></a></li></ol></div>
             
 
           </div>

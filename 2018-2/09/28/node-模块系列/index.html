@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/images/cluster-2.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster-3.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster-4.png">
-<meta property="og:updated_time" content="2018-10-10T10:14:56.000Z">
+<meta property="og:updated_time" content="2018-10-11T03:56:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node 模块系列">
 <meta name="twitter:description" content="Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Bu">
@@ -381,6 +381,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Buffer.alloc(size) <span class="comment">// 会用fill(0)填充已分配的内存，速度稍慢，但安全</span></span><br><span class="line">Buffer.allocUnsafe(size) <span class="comment">// 小于4kb,该方法会从之前的预分配的buffer里slice空间</span></span><br><span class="line">Buffer.allocUnsafeSlow(size)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create an empty buffer of size 10</span></span><br><span class="line"><span class="comment">// A buffer that only can accommodate 10 bytes</span></span><br><span class="line"><span class="keyword">const</span> buf1 = Buffer.alloc(<span class="number">10</span>);</span><br><span class="line"><span class="comment">// Create a buffer with content</span></span><br><span class="line"><span class="keyword">const</span> buf2 = Buffer.from(<span class="string">'hello buffer'</span>);</span><br><span class="line"><span class="comment">// toJSON()方法将数据显示为字符的Unicode代码点</span></span><br><span class="line">buf1.toJSON()</span><br><span class="line"><span class="comment">// &#123; type: 'Buffer', data: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] &#125;</span></span><br><span class="line"><span class="comment">// an empty buffer</span></span><br><span class="line">buf2.toJSON()</span><br><span class="line">  <span class="comment">// &#123; type: 'Buffer',</span></span><br><span class="line">  <span class="comment">//    data: [ </span></span><br><span class="line">  <span class="comment">//      104, 101, 108, 108, 111, 32, 98, 117, 102, 102, 101, 114 </span></span><br><span class="line">  <span class="comment">//    ] </span></span><br><span class="line">  <span class="comment">//  &#125; </span></span><br><span class="line"><span class="comment">// Write to a buffer</span></span><br><span class="line">buf1.write(<span class="string">"Buffer really rocks!"</span>);</span><br><span class="line"><span class="comment">// Decode a buffer</span></span><br><span class="line">buf1.toString() <span class="comment">// 'Buffer rea',buf1 size 10</span></span><br></pre></td></tr></table></figure>
 <p><em>注： new Buffer(xxx)已不推荐</em></p>
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>具体使用api请查阅文档<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = Buffer.from(<span class="string">'test'</span>);</span><br><span class="line">buf.toString(<span class="string">'utf8'</span>); <span class="comment">// 常用编码包括： utf8, hex(字节编码为两个十六进制字符), asscii</span></span><br><span class="line">buf.copay(target);</span><br><span class="line">buf.includes(value);</span><br><span class="line">buf.indexof(value);</span><br><span class="line">buf.slice(start,end);</span><br></pre></td></tr></table></figure></p>
 <h3 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h3><blockquote>
@@ -555,7 +556,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -566,7 +567,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -577,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

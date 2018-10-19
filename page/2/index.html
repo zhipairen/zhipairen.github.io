@@ -263,6 +263,1166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/18/cb-promise-async异步进阶/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/18/cb-promise-async异步进阶/" itemprop="url">cb=>promise=>*=>async异步进阶</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T16:17:19+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/async/" itemprop="url" rel="index">
+                    <span itemprop="name">async</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://medium.freecodecamp.org/some-of-javascripts-most-useful-features-can-be-tricky-let-me-explain-them-4003d7bbed32" target="_blank" rel="noopener">rajaraodv explain</a><br><a href="https://medium.com/trabe/inside-promises-df4df6f9e972" target="_blank" rel="noopener">实现Promise</a><br><a href="https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5" target="_blank" rel="noopener">event loop</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(); <span class="comment">// Symbol: 不可变性，唯一性</span></span><br><span class="line"><span class="built_in">Symbol</span>.iterator; <span class="comment">// Symbol(Symbol.iterator)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">generator</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> k = <span class="keyword">yield</span> a+b;</span><br><span class="line">    <span class="keyword">let</span> m = <span class="keyword">yield</span> a+b+k;</span><br><span class="line">    <span class="keyword">yield</span> a+b+k+m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> gen = generator(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br><span class="line"><span class="built_in">console</span>.log(gen.next());</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/13/Node学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/13/Node学习笔记/" itemprop="url">Nodejs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:09:56+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/" itemprop="url" rel="index">
+                    <span itemprop="name">node后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/koa/" itemprop="url" rel="index">
+                    <span itemprop="name">koa</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/koa/exactly/" itemprop="url" rel="index">
+                    <span itemprop="name">exactly</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="解释Node"><a href="#解释Node" class="headerlink" title="解释Node"></a>解释Node</h3><blockquote>
+<p><a href="https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5" target="_blank" rel="noopener">what exactly is Node.js</a></p>
+</blockquote>
+<p>Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,<strong>使用事件驱动的非阻塞I/O模型，使其轻量且高效</strong>。</p>
+<blockquote>
+<p><a href="https://medium.freecodecamp.org/do-you-want-a-better-understanding-of-buffer-in-node-js-check-this-out-2e29de2968e8" target="_blank" rel="noopener">understanding of Buffer, Streams, Binary data</a><br>更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)</p>
+</blockquote>
+<p>字符，图像，视频都有关于如何转换或编码将其存储在二进制文件中的规定规则，<em>在计算机中所有的数据类型都存储在二进制文件中，称为二进制数据</em></p>
+<ul>
+<li>字符集： Unicode, ASCII（字符映射的数字，eg: L =&gt; 76);</li>
+<li>字符编码：UTF-8 (一个字节由几位bits,eg: 1Byte = 8 bit)</li>
+</ul>
+<p>流：Node.js中的流只是意味着一段数据随着时间的推移从一个点移动到另一个点。整个概念是，您需要处理大量数据，但在开始处理之前无需等待所有数据可用。</p>
+<p>通常，数据的移动通常是为了处理或读取数据，并基于它做出决策。但是，随着时间的推移，流程可能需要的最小和最大数据量。<br>因此，如果数据到达的速率比进程消耗数据的速率快，则多余的数据需要在某处等待轮流进行处理;<br>另一方面，如果进程消耗的数据比它到达的速度快，那么早先到达的少数数据需要等待一定量的数据到达才能被发送出去进行处理。<br>那个“等候区”就是缓冲区！它是计算机中的一个小型物理位置，通常位于RAM中，数据在时间上被收集，等待，并最终在流式传输期间发送出去进行处理。</p>
+<p><em>我们可以将整个流和缓冲过程视为公交车站。在一些公交车站，在一定数量的乘客到达或直到特定的出发时间之前，不允许公共汽车离开。</em><br><em>此外，乘客可以以不同的速度到达不同的时间。乘客和公交车站都无法控制乘客到达车站。</em></p>
+<p><em>无论如何，总会有一个等待的地方。那是Buffer to Node.js！ Node.js无法控制数据到达的速度或时间，流的速度。它只能决定何时发送数据。如果还没有时间，</em><br><em>Node.js会将它们放入缓冲区(buffer) - “等待区” -  RAM中的一个小位置，直到将它们发送出去进行处理</em></p>
+<h3 id="构建api"><a href="#构建api" class="headerlink" title="构建api"></a>构建api</h3><p>前后端分离两大优势：1、 可重复使用的api 2、关注点分离</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/06/27/How-JavaScript-works-系列一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/06/27/How-JavaScript-works-系列一/" itemprop="url">How JavaScript works:系列一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-27T14:46:09+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/深入分析系列/" itemprop="url" rel="index">
+                    <span itemprop="name">深入分析系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/10/18/了解加密-编码-解密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/10/18/了解加密-编码-解密/" itemprop="url">了解加密|编码|解密</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T16:51:18+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/信息处理/" itemprop="url" rel="index">
+                    <span itemprop="name">信息处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="编码（encoding"><a href="#编码（encoding" class="headerlink" title="编码（encoding)"></a>编码（encoding)</h3><p><strong>概念</strong><br>编码本质上是 <strong>信息形式的转化</strong>,可通过解码还原原始信息；<br><strong>目的</strong><br>将信息转化为统一的格式，方便在不同系统之间传输。<br><strong>常见列子</strong><br>ASCII、Unicode、 URL ENcoding、Base64</p>
+<h3 id="摘要-digest"><a href="#摘要-digest" class="headerlink" title="摘要(digest)"></a>摘要(digest)</h3><p><strong>概念</strong><br>摘要是通过 <strong>散列函数对信息运算生成固定大小的’指纹’</strong>,不可被还原。<br><strong>目的</strong><br>相同信息生成的摘要总是相同的，所以可校验信息的完整性，防止信息被篡改。<br><strong>常见例子</strong><br>MD5(单向散列算法), SHA(安全散列算法), MAC(信息认证代码)<br>散列算法：不可逆，防冲突</p>
+<h3 id="加密-encryption"><a href="#加密-encryption" class="headerlink" title="加密(encryption)"></a>加密(encryption)</h3><p><strong>概念</strong><br>加密是 <strong>将明文信息转为难以读取的密文内容，使其不可读</strong>, 可通过密钥还原<br><strong>目的</strong><br>加密是为了保证信息安全，无正确密钥的无法解密出信息内容</p>
+<h4 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h4><ul>
+<li>分为两类：对称加密和非对称加密(速度更慢)。</li>
+<li><a href="https://blog.csdn.net/zuiyuezhou888/article/details/7557048" target="_blank" rel="noopener">常见加密算法</a><br><strong>对称加密</strong><br>加密和解密均采用同一密钥，通信双方都需要该钥匙。<br>常见算法: DES、3DES、AES(高级加密标准)</li>
+</ul>
+<hr>
+<p><strong>非对称加密</strong><br>加密采用公钥，解密采用私钥，是一对不同的钥匙。<br>常见算法: RSA(因子分解)、DSA(数字签名)、ECC(椭圆曲线密码更优)</p>
+<blockquote>
+<p>注意：通常采用非对称算法管理对称算法的密钥，用对称算法加密数据，这样既实现对称加密速度快的优点，又实现安全管理对称密钥的优点<br><a href="https://baike.baidu.com/item/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E7%B3%BB" target="_blank" rel="noopener">公开密钥密码体系</a><br>证书：将公钥和公钥主人联系在一起，再请权威机构（CA)确认，加上该权威机构的签名(分配的公钥和主人信息经机构私钥加密)，形成证书。<br>CA: 签发证书(可信任的签字)，提供一个可信任的公钥，还是证书和密钥的管理</p>
+</blockquote>
+<p>浏览器需要验证网站是否真实可靠，服务器发送数字证书给浏览器；<br>证书内容大致有：</p>
+<ul>
+<li>签发者</li>
+<li>证书用途</li>
+<li>自己的公钥</li>
+<li>自己的加密算法，Hash算法</li>
+<li>证书到期时间等<br>将证书内容做HASH处理得到固定长度的字符，再用CA的私钥加密，得到<em>数字签名</em>；<br>浏览器根据CA公钥值，解密数字签名，得到原始的HASHs,然后自己也按照证书的HASH算法，计算一个HASHc,如果HASHc == HASHs，则认证通过；<br>通信双方利用DH算法，协商一个 master-key,以master-key推导出session-key，用于双方SSL数据流的加密/解密,采用对称加密(AES)；<br>以master-key推导出 hash-key，用于数据完整性检查的密钥，HASH算法：MD5、SHA,生成MAC,保证数据不被篡改；<br>附在HTTP报文的后面，用 session-key加密所有数据（HTTP+MAC）；</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/52493697" target="_blank" rel="noopener">数字签名,数字证书,SSL,https的关系</a><br>计算机网络的可靠支付：SSL(现以为TLS)负责业务层面的可靠， TCP负责传输层面的可靠</p>
+<h3 id="node的crypto模块"><a href="#node的crypto模块" class="headerlink" title="node的crypto模块"></a><a href="http://nodejs.cn/api/crypto.html" target="_blank" rel="noopener">node的crypto模块</a></h3><p>HASH算法：指将任意长度的二进制值映射为较短的固定长度的二进制值，小的二进制值称为哈希值。<br>HMAC算法： 以一个密钥和消息为输入，利用哈希算法生成一个消息摘要为输出(可防止md5彩虹表攻击)。<br><strong>Class: Hash &amp;&amp; Hmac</strong><br>Hash类穿甲数据哈希值的工具类；Hmac类创建加密Hmac摘要的工具：<br>. 可作为读写stream<br>. 可使用hmac.update(data)和hmac.digest(encoding)产生计算后的摘要<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string">const fs = require('</span>fs<span class="string">');</span></span><br><span class="line"><span class="string">const hash = crypto.createHash('</span>sha256<span class="string">'); // 生成计算散列哈希</span></span><br><span class="line"><span class="string">const hmac = crypto.createHmac('</span>sha256<span class="string">', '</span>a secret<span class="string">'); // algorithm 算法 secret 密钥</span></span><br><span class="line"><span class="string">const input = fs.createReadStream('</span>test.js<span class="string">');</span></span><br><span class="line"><span class="string">input.pipe(hmac).pipe(process.stdout);</span></span><br><span class="line"><span class="string">或</span></span><br><span class="line"><span class="string">hmac.update('</span>some data to hash<span class="string">');</span></span><br><span class="line"><span class="string">console.log(hmac.digest('</span>hex<span class="string">')); // hex 16进制编码</span></span><br></pre></td></tr></table></figure></p>
+<p>登录密码的设计：用password字段存密文，passkey字段存储key，就算数据库被攻击，黑客只拿到密文和key，明文密码并没有泄露。</p>
+<p><strong>Class: Cipher &amp;&amp; Decipher</strong><br> Cipher类用于加密数据，Decipher类用于解密数据：<br> . 可作为读写流<br> . 可使用cipher.update()和cipher.final()产生加密数据<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string">const fs = require('</span>fs<span class="string">');</span></span><br><span class="line"><span class="string">const cipher = crypto.createCipheriv('</span>aes192<span class="string">','</span>a secret<span class="string">'); // 参数： 算法aes(对称)， 密钥</span></span><br><span class="line"><span class="string">const input = fs.createReadStream('</span>test.js<span class="string">');</span></span><br><span class="line"><span class="string">const output = fs.createWriteStream('</span>test.enc<span class="string">');</span></span><br><span class="line"><span class="string">input.pipe(cipher).pipe(output);</span></span><br><span class="line"><span class="string">或</span></span><br><span class="line"><span class="string">let encrypted = cipher.update('</span>some clear text data<span class="string">', '</span>utf8<span class="string">', '</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">encrypted += cipher.final('</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">----------------------------</span></span><br><span class="line"><span class="string">const decipher = crypto.createDecipher('</span>aes192<span class="string">', '</span>a secret<span class="string">'); // 解密</span></span><br><span class="line"><span class="string">input.pipe(decipher).pipe(output);</span></span><br><span class="line"><span class="string">let decrypted = decipher.update('</span>some encrypted 加密内容<span class="string">', '</span>hex<span class="string">', '</span>utf8<span class="string">');</span></span><br><span class="line"><span class="string">decrypted += decipher.final('</span>utf8<span class="string">');</span></span><br></pre></td></tr></table></figure></p>
+<p> <strong>签名与验证算法</strong><br> openssl生成公钥私钥<br> <img src="/images/signingAndVerification.png" alt="签名与验证"><br> Sign类生成签名，Verify类验证签名：<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string"> function signer(algorithm,privateKey,data)&#123;</span></span><br><span class="line"><span class="string">    var sign = crypto.createSign(algorithm);</span></span><br><span class="line"><span class="string">    sign.update(data);</span></span><br><span class="line"><span class="string">    sig = sign.sign(privateKey, '</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">    return sig;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">function verify(algorithm,publicKey,sig,data)&#123;</span></span><br><span class="line"><span class="string">    var verify = crypto.createVerify(algorithm);</span></span><br><span class="line"><span class="string">    verify.update(data);</span></span><br><span class="line"><span class="string">    return verify.verify(publicKey, sig, '</span>hex<span class="string">')</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p> <strong>salt(盐)算法</strong><br> 盐(Salt),在密码学中，是指通过在密码任意固定位置插入特定的字符串，让散列后的结果和使用原始密码的散列结果不相符，这种过程称之为“加盐”.<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> crypto.pbkdf2(password, salt, iterations, keylen, digest, callback);</span><br><span class="line"> <span class="comment">// 通过伪随机码生成salt，进行加密</span></span><br><span class="line"> crypto.randomBytes(<span class="number">128</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, salt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err;&#125;</span><br><span class="line">    salt = salt.toString(<span class="string">'hex'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(salt); <span class="comment">//生成salt</span></span><br><span class="line"></span><br><span class="line">    crypto.pbkdf2(txt, salt, <span class="number">4096</span>, <span class="number">256</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err,hash</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err; &#125;</span><br><span class="line">        hash = hash.toString(<span class="string">'hex'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(hash);<span class="comment">//生成密文</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 数据库中把对应的 salt和密文一起存储，保证用户密码的安全性</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/10/10/libs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/10/10/libs/" itemprop="url">libs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T14:12:49+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/库/" itemprop="url" rel="index">
+                    <span itemprop="name">库</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/库/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Immer: 通过改变当前状态来创建下一个不可变状态</p>
+<ul>
+<li><a href="https://github.com/mweststrate/immer" target="_blank" rel="noopener">immer github</a></li>
+</ul>
+<p>js函数式编程库：<a href="https://github.com/ramda/ramda" target="_blank" rel="noopener">ramda</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/09/13/服务端渲染ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/09/13/服务端渲染ssr/" itemprop="url">服务端渲染ssr</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T11:13:23+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/ssr/" itemprop="url" rel="index">
+                    <span itemprop="name">ssr</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.jianshu.com/p/47c8e364d0bc?appinstall=1&amp;mType=Group" target="_blank" rel="noopener">react零搭建SSR</a></p>
+<ul>
+<li>生成首页骨架内容，转为字符串html,减少首页白屏时间</li>
+<li>有利于SEO</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/03/17/了解babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/03/17/了解babel/" itemprop="url">了解babel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T15:01:54+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；<br><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
+<ul>
+<li>plugins: es6+新语法(箭头函数,class)转译</li>
+<li>polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api<h4 id="基础建设"><a href="#基础建设" class="headerlink" title="基础建设"></a>基础建设</h4></li>
+<li><p>安装 babel cli 和env preset</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-cli babel-preset-env</span><br><span class="line">或 yarn add --save-dev babel-cli babel-preset-env</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 .babelrc文件（或package.json增加babel属性）</p>
+<h4 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h4><p>核心依赖包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ast: 抽象语法树</span><br><span class="line">babel.transform(code, options) <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line"></span><br><span class="line">babel.transformFile(<span class="string">"filename.js"</span>, options, <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  result; <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 给定一个ast进行转换</span></span><br><span class="line"><span class="keyword">const</span> &#123; code, map, ast &#125; = babel.transformFromAst(ast, code, options);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="babel"><a href="#babel" class="headerlink" title=".babel"></a>.babel</h4><p><strong>presets(预设)</strong><br>presets是一系列插件的集合，官方唯一推荐preset: babel-preset-env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&quot;env&quot;, &#123;</span><br><span class="line">            &quot;targets&quot;: &#123; // 指定要转译的环境</span><br><span class="line">                &quot;browsers&quot;: [...],</span><br><span class="line">                &quot;node&quot;: &quot;8&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;modules&quot;: &apos;commonjs&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>plugins</strong><br>plugins插件列表：</p>
+<ul>
+<li>transform-runtime：所有的 helper 都会引用模块 babel-runtime，以避免编译输出的重复问题；避免污染全局作用域；注意：babel-runtime 作为依赖</li>
+</ul>
+<blockquote>
+<p>在浏览器引入 <a href="https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）" target="_blank" rel="noopener">https://cdn.polyfill.io/v2/polyfill.js（解决polyfill过大）</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/12/10/牛人集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -358,6 +1518,9 @@
           
             <h3 id="h5动画"><a href="#h5动画" class="headerlink" title="h5动画"></a>h5动画</h3><ul>
 <li><a href="https://codepen.io/HelKyle/" target="_blank" rel="noopener">Helkyle 三角函数动画集</a></li>
+</ul>
+<h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><ul>
+<li><a href="https://toddmotto.com/" target="_blank" rel="noopener">Todd Motto</a></li>
 </ul>
 
           
@@ -668,162 +1831,7 @@
           
             <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo1</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">    o2: &#123;</span><br><span class="line">        x: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = o1;</span><br><span class="line">o1= <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o1:'</span>, o1, <span class="string">'o3:'</span>, o3); <span class="comment">// o1: 1, o3: &#123;o2:&#123;x:1&#125;&#125; </span></span><br><span class="line"><span class="keyword">var</span> o4 = o3.o2;</span><br><span class="line">o3 = <span class="string">'aaa'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'o4:'</span>, o4); <span class="comment">// o4: &#123;x:1&#125;</span></span><br><span class="line">o4 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>原型链理解</strong><br><img src="/images/prototype-1.png" alt="prototype-1"><br><img src="/images/prototype-2.png" alt="prototype-2"><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js 原型链</span></span><br><span class="line"><span class="comment">// prototype为函数Funciton的属性</span></span><br><span class="line"><span class="comment">// Foo, Object, String, Function等构造函数的原型为Function.prototype =&gt; Object.prototype =&gt; null</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'common'</span></span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123;</span><br><span class="line">    say()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`hello, my name <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I am common function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例foo的原型:'</span>, foo.__proto__ === Foo.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'实例obj的原型:'</span>, obj.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Foo的原型是否为Function.prototype:'</span>, Foo.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数test的原型是否为Function.prototype:'</span>, test.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Object的原型是否为Function.prototype:'</span>, <span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数Function的原型是否为Function.prototype:'</span>, <span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Foo.prototype的原型:'</span>, Foo.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Object.prototype的原型:'</span>, <span class="built_in">Object</span>.prototype.__proto__); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Function.prototype的原型:'</span>, <span class="built_in">Function</span>.prototype.__proto__); <span class="comment">// Object.prototype</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/07/10/学习资源集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="terry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="纸牌人">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016-2/07/10/学习资源集/" itemprop="url">学习资源集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T16:31:44+08:00">
-                2016-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自学/" itemprop="url" rel="index">
-                    <span itemprop="name">自学</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自学/资源/" itemprop="url" rel="index">
-                    <span itemprop="name">资源</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="视频学习网站"><a href="#视频学习网站" class="headerlink" title="视频学习网站"></a>视频学习网站</h3><ul>
-<li><a href="https://egghead.io/" target="_blank" rel="noopener">egghead</a></li>
-</ul>
-
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pro8</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise start'</span>);</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'timeout 1'</span>);</span><br><span class="line">            resolve(<span class="string">'timeout'</span>) </span><br><span class="line">        &#125;,<span class="number">5000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">pro8().then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'promise then'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">val</span>)=&gt;</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'val:'</span>, val);</span><br><span class="line">    <span class="comment">// setTimeout(()=&gt;&#123;</span></span><br><span class="line">    <span class="comment">//             console.log('timeout 2');</span></span><br><span class="line">    <span class="comment">//             return new Promise((resolve,reject)=&gt;&#123;</span></span><br><span class="line">    <span class="comment">//                 resolve('timeout 22222')</span></span><br><span class="line">    <span class="comment">//             &#125;)</span></span><br><span class="line">    <span class="comment">//         &#125;,4000)  // 不会等待4秒之后才执行then的回调</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise2222 start'</span>);</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'timeout 2'</span>);</span><br><span class="line">                resolve(<span class="string">'timeout 22222'</span>)</span><br><span class="line">        &#125;,<span class="number">4000</span>)</span><br><span class="line">    &#125;) <span class="comment">// 会再次等待4秒，因为每一个promise都是独立的promiseJob(JOb Queue),其then之后的回调会存储在该job中</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this:'</span>,<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise then2'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise val2:'</span>, val);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           
         
       
@@ -862,7 +1870,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -908,7 +1916,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -919,7 +1927,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -930,7 +1938,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
