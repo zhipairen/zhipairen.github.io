@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；注意: babel只转换新语法，需要polyfill,babel是一个js编译器;  plugins: es6+新语法(箭头函数,class)转译 polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api基础建设 安装 babe">
+<meta name="description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
 <meta name="keywords" content="js,babel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解babel">
 <meta property="og:url" content="http://yoursite.com/2017-2/03/17/了解babel/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；注意: babel只转换新语法，需要polyfill,babel是一个js编译器;  plugins: es6+新语法(箭头函数,class)转译 polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api基础建设 安装 babe">
+<meta property="og:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T09:17:26.000Z">
+<meta property="og:updated_time" content="2018-11-23T02:17:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解babel">
-<meta name="twitter:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；注意: babel只转换新语法，需要polyfill,babel是一个js编译器;  plugins: es6+新语法(箭头函数,class)转译 polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api基础建设 安装 babe">
+<meta name="twitter:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
 
 
 
@@ -363,7 +363,13 @@
       
 
       
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析，转换，生成；<br><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；</p>
+<ul>
+<li>解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示</li>
+<li>转化: 遍历令牌流，根据配置对节点增，更，移等操作</li>
+<li>生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap</li>
+</ul>
+<p><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
 <ul>
 <li>plugins: es6+新语法(箭头函数,class)转译</li>
 <li>polyfill(垫片)： es6+新增的api(reset,promise等)无法转译，需要引入polyfill兼容api<h4 id="基础建设"><a href="#基础建设" class="headerlink" title="基础建设"></a>基础建设</h4></li>

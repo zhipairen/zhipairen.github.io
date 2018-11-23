@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading">
+<meta name="description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
 <meta name="keywords" content="优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
 <meta property="og:url" content="http://yoursite.com/2018-2/11/22/前端性能优化/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading">
+<meta property="og:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-22T09:56:29.000Z">
+<meta property="og:updated_time" content="2018-11-23T02:07:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化">
-<meta name="twitter:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading">
+<meta name="twitter:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
 
 
 
@@ -371,7 +371,21 @@
 <li>tree shaking(树摇)优化,降低bundle体积</li>
 <li>PWA<br><strong>进一步优化</strong></li>
 <li>首屏采用“骨架图”</li>
-<li>页面切换Loading</li>
+<li>页面切换Loading<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><a href="https://zhuanlan.zhihu.com/p/33370207#comments" target="_blank" rel="noopener">图片加载优化</a><br><strong>启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载<em>首屏</em>(首先进入屏幕视窗内的区域范围)所需的图片</strong></li>
+</ul>
+<ol>
+<li>通过<em>getBoundingClientRect</em>方法，获取图片位置信息，判断是否在 viewport内部<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。</span></span><br><span class="line"><span class="keyword">const</span> inViewport = <span class="function">(<span class="params">el</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> rect = el.getBoundingClientRect();</span><br><span class="line">    <span class="keyword">return</span> rect.top &gt; <span class="number">0</span> </span><br><span class="line">        &amp;&amp; rect.bottom &lt; <span class="built_in">window</span>.innerHeight</span><br><span class="line">        &amp;&amp; rect.left &gt; <span class="number">0</span></span><br><span class="line">        &amp;&amp; rect.right &lt; <span class="built_in">window</span>.innerWidth</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在vue中可以自定义指令，结合defer和inViewport，及指令钩子进行优先加载处理</p>
+<ol start="2">
+<li>可进行域名切分，提升并发数</li>
+</ol>
+<p><strong>图片体积过大</strong><br>图片大小 = 图片总像素数目 * 编码单位像素（一般为4）所需字节数<br>R\G\B\A每个色道有2^8 =256个值，一个字节，所以像素点需要四个字节</p>
+<ul>
+<li>单位像素优化：采用jpeg,webp格式，有各自的内部无损算法</li>
+<li>像素总数优化：根据不同设备尺寸加载不同尺寸的图片(裁剪)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resize = <span class="function">(<span class="params">size</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> viewWidth</span><br><span class="line">  <span class="keyword">const</span> dpr = <span class="built_in">window</span>.devicePixelRatio</span><br><span class="line">  <span class="keyword">const</span> html = <span class="built_in">document</span>.documentElement</span><br><span class="line">  <span class="keyword">const</span> dataDpr = html.getAttribute(<span class="string">'data-dpr'</span>)</span><br><span class="line">  <span class="keyword">const</span> ratio = dataDpr ? (dpr / dataDpr) : dpr</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    viewWidth = +(html.getAttribute(<span class="string">'style'</span>).match(<span class="regexp">/(\d+)/</span>) || [])[<span class="number">1</span>]</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="keyword">const</span> w = html.offsetWidth</span><br><span class="line">    <span class="keyword">if</span> (w / dpr &gt; <span class="number">540</span>) &#123;</span><br><span class="line">      viewWidth = <span class="number">540</span> * dpr / <span class="number">10</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      viewWidth = w / <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  viewWidth = viewWidth * ratio</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Number</span>(viewWidth) &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">typeof</span> viewWidth === <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (size * viewWidth) / <span class="number">75</span> <span class="comment">// 75 is the 1/10 iphone6 deivce width pixel</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> size</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -559,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPA优化"><span class="nav-number">1.</span> <span class="nav-text">SPA优化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPA优化"><span class="nav-number">1.</span> <span class="nav-text">SPA优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">2.</span> <span class="nav-text">图片</span></a></li></ol></div>
             
 
           </div>
