@@ -263,6 +263,329 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/11/12/sql优化记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/11/12/sql优化记录/" itemprop="url">sql优化记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-12T18:13:35+08:00">
+                2017-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="少挖坑"><a href="#少挖坑" class="headerlink" title="少挖坑"></a>少挖坑</h3><p><strong>少用负向条件查询</strong><br>负向条件查询： ！= 、 not in、not exists等 都不能使用索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- error:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> != <span class="number">0</span> </span><br><span class="line"><span class="comment">-- correct:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>少用前导模糊查询</strong><br>前导模糊模糊查询无法命中索引: ‘%param%’, ‘%param’<br>非前导： ‘param%’</p>
+<p><strong>少在条件字段进行运算</strong><br>使用运算函数，查询一样会进行全表检索<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- error:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Year</span>(CreateTime)=<span class="number">2018</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>索引字段尽量不要允许NUll值</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/10/18/了解加密-编码-解密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-2/10/18/了解加密-编码-解密/" itemprop="url">了解加密|编码|解密</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T16:51:18+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/信息处理/" itemprop="url" rel="index">
+                    <span itemprop="name">信息处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="编码（encoding"><a href="#编码（encoding" class="headerlink" title="编码（encoding)"></a>编码（encoding)</h3><p><strong>概念</strong><br>编码本质上是 <strong>信息形式的转化</strong>,可通过解码还原原始信息；<br><strong>目的</strong><br>将信息转化为统一的格式，方便在不同系统之间传输。<br><strong>常见列子</strong><br>ASCII、Unicode、 URL ENcoding、Base64</p>
+<h3 id="摘要-digest"><a href="#摘要-digest" class="headerlink" title="摘要(digest)"></a>摘要(digest)</h3><p><strong>概念</strong><br>摘要是通过 <strong>散列函数对信息运算生成固定大小的’指纹’</strong>,不可被还原。<br><strong>目的</strong><br>相同信息生成的摘要总是相同的，所以可校验信息的完整性，防止信息被篡改。<br><strong>常见例子</strong><br>MD5(单向散列算法), SHA(安全散列算法), MAC(信息认证代码)<br>散列算法：不可逆，防冲突</p>
+<h3 id="加密-encryption"><a href="#加密-encryption" class="headerlink" title="加密(encryption)"></a>加密(encryption)</h3><p><strong>概念</strong><br>加密是 <strong>将明文信息转为难以读取的密文内容，使其不可读</strong>, 可通过密钥还原<br><strong>目的</strong><br>加密是为了保证信息安全，无正确密钥的无法解密出信息内容</p>
+<h4 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h4><ul>
+<li>分为两类：对称加密和非对称加密(速度更慢)。</li>
+<li><a href="https://blog.csdn.net/zuiyuezhou888/article/details/7557048" target="_blank" rel="noopener">常见加密算法</a><br><strong>对称加密</strong><br>加密和解密均采用同一密钥，通信双方都需要该钥匙。<br>常见算法: DES、3DES、AES(高级加密标准)</li>
+</ul>
+<hr>
+<p><strong>非对称加密</strong><br>加密采用公钥，解密采用私钥，是一对不同的钥匙。<br>常见算法: RSA(因子分解)、DSA(数字签名)、ECC(椭圆曲线密码更优)</p>
+<blockquote>
+<p>注意：通常采用非对称算法管理对称算法的密钥，用对称算法加密数据，这样既实现对称加密速度快的优点，又实现安全管理对称密钥的优点<br><a href="https://baike.baidu.com/item/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E7%B3%BB" target="_blank" rel="noopener">公开密钥密码体系</a><br>证书：将公钥和公钥主人联系在一起，再请权威机构（CA)确认，加上该权威机构的签名(分配的公钥和主人信息经机构私钥加密)，形成证书。<br>CA: 签发证书(可信任的签字)，提供一个可信任的公钥，还是证书和密钥的管理</p>
+</blockquote>
+<p>浏览器需要验证网站是否真实可靠，服务器发送数字证书给浏览器；<br>证书内容大致有：</p>
+<ul>
+<li>签发者</li>
+<li>证书用途</li>
+<li>自己的公钥</li>
+<li>自己的加密算法，Hash算法</li>
+<li>证书到期时间等<br>将证书内容做HASH处理得到固定长度的字符，再用CA的私钥加密，得到<em>数字签名</em>；<br>浏览器根据CA公钥值，解密数字签名，得到原始的HASHs,然后自己也按照证书的HASH算法，计算一个HASHc,如果HASHc == HASHs，则认证通过；<br>通信双方利用DH算法，协商一个 master-key,以master-key推导出session-key，用于双方SSL数据流的加密/解密,采用对称加密(AES)；<br>以master-key推导出 hash-key，用于数据完整性检查的密钥，HASH算法：MD5、SHA,生成MAC,保证数据不被篡改；<br>附在HTTP报文的后面，用 session-key加密所有数据（HTTP+MAC）；</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/52493697" target="_blank" rel="noopener">数字签名,数字证书,SSL,https的关系</a><br>计算机网络的可靠支付：SSL(现以为TLS)负责业务层面的可靠， TCP负责传输层面的可靠</p>
+<h3 id="node的crypto模块"><a href="#node的crypto模块" class="headerlink" title="node的crypto模块"></a><a href="http://nodejs.cn/api/crypto.html" target="_blank" rel="noopener">node的crypto模块</a></h3><p>HASH算法：指将任意长度的二进制值映射为较短的固定长度的二进制值，小的二进制值称为哈希值。<br>HMAC算法： 以一个密钥和消息为输入，利用哈希算法生成一个消息摘要为输出(可防止md5彩虹表攻击)。<br><strong>Class: Hash &amp;&amp; Hmac</strong><br>Hash类穿甲数据哈希值的工具类；Hmac类创建加密Hmac摘要的工具：<br>. 可作为读写stream<br>. 可使用hmac.update(data)和hmac.digest(encoding)产生计算后的摘要<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string">const fs = require('</span>fs<span class="string">');</span></span><br><span class="line"><span class="string">const hash = crypto.createHash('</span>sha256<span class="string">'); // 生成计算散列哈希</span></span><br><span class="line"><span class="string">const hmac = crypto.createHmac('</span>sha256<span class="string">', '</span>a secret<span class="string">'); // algorithm 算法 secret 密钥</span></span><br><span class="line"><span class="string">const input = fs.createReadStream('</span>test.js<span class="string">');</span></span><br><span class="line"><span class="string">input.pipe(hmac).pipe(process.stdout);</span></span><br><span class="line"><span class="string">或</span></span><br><span class="line"><span class="string">hmac.update('</span>some data to hash<span class="string">');</span></span><br><span class="line"><span class="string">console.log(hmac.digest('</span>hex<span class="string">')); // hex 16进制编码</span></span><br></pre></td></tr></table></figure></p>
+<p>登录密码的设计：用password字段存密文，passkey字段存储key，就算数据库被攻击，黑客只拿到密文和key，明文密码并没有泄露。</p>
+<p><strong>Class: Cipher &amp;&amp; Decipher</strong><br> Cipher类用于加密数据，Decipher类用于解密数据：<br> . 可作为读写流<br> . 可使用cipher.update()和cipher.final()产生加密数据<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string">const fs = require('</span>fs<span class="string">');</span></span><br><span class="line"><span class="string">const cipher = crypto.createCipheriv('</span>aes192<span class="string">','</span>a secret<span class="string">'); // 参数： 算法aes(对称)， 密钥</span></span><br><span class="line"><span class="string">const input = fs.createReadStream('</span>test.js<span class="string">');</span></span><br><span class="line"><span class="string">const output = fs.createWriteStream('</span>test.enc<span class="string">');</span></span><br><span class="line"><span class="string">input.pipe(cipher).pipe(output);</span></span><br><span class="line"><span class="string">或</span></span><br><span class="line"><span class="string">let encrypted = cipher.update('</span>some clear text data<span class="string">', '</span>utf8<span class="string">', '</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">encrypted += cipher.final('</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">----------------------------</span></span><br><span class="line"><span class="string">const decipher = crypto.createDecipher('</span>aes192<span class="string">', '</span>a secret<span class="string">'); // 解密</span></span><br><span class="line"><span class="string">input.pipe(decipher).pipe(output);</span></span><br><span class="line"><span class="string">let decrypted = decipher.update('</span>some encrypted 加密内容<span class="string">', '</span>hex<span class="string">', '</span>utf8<span class="string">');</span></span><br><span class="line"><span class="string">decrypted += decipher.final('</span>utf8<span class="string">');</span></span><br></pre></td></tr></table></figure></p>
+<p> <strong>签名与验证算法</strong><br> openssl生成公钥私钥<br> <img src="/images/signingAndVerification.png" alt="签名与验证"><br> Sign类生成签名，Verify类验证签名：<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto);</span></span><br><span class="line"><span class="string"> function signer(algorithm,privateKey,data)&#123;</span></span><br><span class="line"><span class="string">    var sign = crypto.createSign(algorithm);</span></span><br><span class="line"><span class="string">    sign.update(data);</span></span><br><span class="line"><span class="string">    sig = sign.sign(privateKey, '</span>hex<span class="string">');</span></span><br><span class="line"><span class="string">    return sig;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">function verify(algorithm,publicKey,sig,data)&#123;</span></span><br><span class="line"><span class="string">    var verify = crypto.createVerify(algorithm);</span></span><br><span class="line"><span class="string">    verify.update(data);</span></span><br><span class="line"><span class="string">    return verify.verify(publicKey, sig, '</span>hex<span class="string">')</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p> <strong>salt(盐)算法</strong><br> 盐(Salt),在密码学中，是指通过在密码任意固定位置插入特定的字符串，让散列后的结果和使用原始密码的散列结果不相符，这种过程称之为“加盐”.<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> crypto.pbkdf2(password, salt, iterations, keylen, digest, callback);</span><br><span class="line"> <span class="comment">// 通过伪随机码生成salt，进行加密</span></span><br><span class="line"> crypto.randomBytes(<span class="number">128</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, salt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err;&#125;</span><br><span class="line">    salt = salt.toString(<span class="string">'hex'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(salt); <span class="comment">//生成salt</span></span><br><span class="line"></span><br><span class="line">    crypto.pbkdf2(txt, salt, <span class="number">4096</span>, <span class="number">256</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err,hash</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err; &#125;</span><br><span class="line">        hash = hash.toString(<span class="string">'hex'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(hash);<span class="comment">//生成密文</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 数据库中把对应的 salt和密文一起存储，保证用户密码的安全性</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017-2/10/10/libs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -854,7 +1177,160 @@
 </ul>
 <h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><ul>
 <li><a href="https://toddmotto.com/" target="_blank" rel="noopener">Todd Motto</a></li>
+<li><a href="https://www.h5jun.com/archives/" target="_blank" rel="noopener">月影</a></li>
 </ul>
+<h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><ul>
+<li><a href="https://github.com/getify/Functional-Light-JS" target="_blank" rel="noopener">functional-light-js</a></li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="noopener">You-Dont-know-js</a></li>
+<li><a href="https://github.com/dt-fe/weekly" target="_blank" rel="noopener">黄子毅weekly</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/12/04/前端题集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016-2/12/04/前端题集/" itemprop="url">前端题集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-04T10:58:54+08:00">
+                2016-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p><strong>async</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'saync1 start'</span>);</span><br><span class="line">    awiat async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)  </span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"><span class="comment">// 结果：</span></span><br><span class="line"><span class="comment">// script start</span></span><br><span class="line"><span class="comment">// async1 start</span></span><br><span class="line"><span class="comment">// async2： await表达式之后返回Promise,跳出 async1函数体</span></span><br><span class="line"><span class="comment">// promise1</span></span><br><span class="line"><span class="comment">// script end</span></span><br><span class="line"><span class="comment">// promise2</span></span><br><span class="line"><span class="comment">// async1 end</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>questions</strong></p>
+<ol>
+<li>将多层数组转换成一层数组<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> testArr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>, [<span class="number">5</span>, <span class="number">6</span>]]];</span><br><span class="line"><span class="keyword">const</span> flatten = <span class="function"><span class="params">arr</span> =&gt;</span> arr.reduce(</span><br><span class="line">    (flat,next) =&gt; flat.concat(<span class="built_in">Array</span>.isArray(next)? flatten(next): next),</span><br><span class="line">    []</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
           
         
@@ -1175,7 +1651,7 @@
 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.getName();<span class="comment">// 2  </span></span><br><span class="line">getName(); <span class="comment">// 4: var 和 函数声明都会被提升，但是函数声明的提升级别比 var 高</span></span><br><span class="line">Foo().getName(); <span class="comment">// 1: window.getName被覆盖</span></span><br><span class="line">getName(); <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">new</span> Foo.getName(); <span class="comment">// 2: new (Foo.getName)() 运算符优先级* （）&gt; . || new 带参数 &gt; new 无参数</span></span><br><span class="line"><span class="keyword">new</span> Foo().getName(); <span class="comment">//   3: (new Foo()).getName()</span></span><br><span class="line"><span class="keyword">new</span> <span class="keyword">new</span> Foo().getName();   <span class="comment">// 3: new ((new Foo()).getName)()    </span></span><br><span class="line"><span class="comment">// 2 4 1 1 2 3 3</span></span><br></pre></td></tr></table></figure>
-<p><strong>node流积压问题(backpressure)</strong></p>
+<p><strong>EventEmitter</strong><br>事件发布<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">exports</span>)</span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">EventEmitter</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">var</span> proto = EventEmitter.prototype;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * find the index of listener for the event</span></span><br><span class="line"><span class="comment">    * @param &#123;obj[]&#125; listeners </span></span><br><span class="line"><span class="comment">    * @param &#123;Func&#125; listener</span></span><br><span class="line"><span class="comment">    * @return &#123;Num&#125; </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">indexOfListener</span>(<span class="params">listeners, listener</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> i = listeners.length;</span><br><span class="line">        <span class="keyword">while</span>(i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(listeners[i].listener === listener)&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">alias</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">aliasClosure</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>[name].apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : <span class="keyword">this</span> || &#123;&#125;));</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1378,7 +1854,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1424,7 +1900,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1435,7 +1911,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1446,7 +1922,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="深入理解React高阶组件 Higher Order Components  12345678910111213141516171819202122232425262728293031import hoistNonReactStatic from &apos;hoist-non-react-statics&apos;;function higherOrderComponent(wrappedComponent[,ar">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-23T08:48:29.000Z">
+<meta property="og:image" content="http://yoursite.com/images/react-working.png">
+<meta property="og:updated_time" content="2018-12-06T06:55:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react难点">
 <meta name="twitter:description" content="深入理解React高阶组件 Higher Order Components  12345678910111213141516171819202122232425262728293031import hoistNonReactStatic from &apos;hoist-non-react-statics&apos;;function higherOrderComponent(wrappedComponent[,ar">
+<meta name="twitter:image" content="http://yoursite.com/images/react-working.png">
 
 
 
@@ -367,7 +369,12 @@
 <p><a href="https://zhuanlan.zhihu.com/p/24776678" target="_blank" rel="noopener">Higher Order Components</a></p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hoistNonReactStatic <span class="keyword">from</span> <span class="string">'hoist-non-react-statics'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">higherOrderComponent</span>(<span class="params">wrappedComponent[,args]</span>)</span>&#123; <span class="comment">// 高阶组件就是一个没有副作用的纯函数</span></span><br><span class="line"><span class="comment">// 高阶组件是通过将原组件 包裹（wrapping） 在容器组件（container component）里面的方式来 组合（composes） 使用原组件</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Enhance</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">     <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">         <span class="keyword">super</span>(props)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 公用的逻辑,不要修改原始组件</span></span><br><span class="line">     .....</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="comment">// 过滤掉与高阶函数功能相关的props属性，不再传递，保证原组件不被大幅修改</span></span><br><span class="line">        <span class="keyword">const</span> &#123; forwardedRef, extraProp, ...passThroughProps &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="comment">// 向包裹组件注入props属性，一般都是高阶组件的state状态或实例方法</span></span><br><span class="line">        <span class="keyword">const</span> injectedProp = someStateOrInstanceMethod;</span><br><span class="line">        <span class="keyword">return</span> &lt;wrappedComponent </span><br><span class="line">                injectedProp=&#123;injectedProp&#125;</span><br><span class="line">                ref=&#123;forwardedRef&#125;</span><br><span class="line">                &#123;...passThroughProps&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  // 拷贝原组件所有的静态方法</span><br><span class="line"> hoistNonReactStatic(Enhance, WrappedComponent); </span><br><span class="line"> // React.forwardRef：接受一个(props,ref)=&gt;React node 函数； 处理ref引用指向问题</span><br><span class="line">function forwardRef(props, ref)&#123;</span><br><span class="line">    return &lt;Enhance &#123;...props&#125; forwardedRef=&#123;ref&#125; /&gt;;</span><br><span class="line">&#125;</span><br><span class="line"> return React.forwardRef(forwardRef);</span><br><span class="line">&#125;</span><br><span class="line">// 常见的高阶组件是 redux,最大化使用组合</span><br><span class="line">const ConnectedComment = connect(commentSelector, commentActions)(Comment);</span><br></pre></td></tr></table></figure>
-<p>注意： </p>
+<p><em>高阶组件HOC应用</em></p>
+<ol>
+<li>当装饰器使用：@higherOrderComponent</li>
+<li>传递参数,定义HOC工厂函数，返回一个HOC： @higherOrderComponent(args)</li>
+<li>反向继承HOC: function(WrappedComponent){ return class extends WrappedComponent { ….. }}<br>注意： </li>
+</ol>
 <ul>
 <li><em>不要在render函数中使用高阶组件，</em>若使用的话，每次都将创建一个新的组件实例，则使用差异算法时，每次都将子对象树完全移除，*浪费性能，可能引起原组件状态和子组件丢失。</li>
 <li>当使用高阶组件包装组件，原始组件被容器组件包裹，也就意味着新组件会丢失原始组件的所有静态方法，<em>必须将静态方法做拷贝</em></li>
@@ -407,8 +414,25 @@
 </li>
 <li>React 16 Generates More Efficient HTML</li>
 <li>React 16 SSR Doesn’t Support Error Boundaries or Portals</li>
-<li>React 16 Supports Streaming: renderToString() =&gt; renderToNodeStream()</li>
+<li><p>React 16 Supports Streaming: renderToString() =&gt; renderToNodeStream()</p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>注：请求数据，事件订阅都应在 componentDidMount里</p>
+<p>新生命周期： getDerivedStateFromProps(nextProps, preState)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line">componentWillReceiveProps(nextProps)&#123;</span><br><span class="line">  <span class="keyword">if</span>( nextProps.x !== <span class="keyword">this</span>.props.x)&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">x</span>: nextProps.x&#125;) <span class="comment">// 更新state</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(nextProps.x)&#123;</span><br><span class="line">    <span class="keyword">this</span>.handleBack(); <span class="comment">// 回调</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// after: 分工清晰</span></span><br><span class="line"><span class="keyword">static</span> getDerivedStateFromProps(nextProps, prevState) &#123; <span class="comment">// 只处理state</span></span><br><span class="line">  <span class="keyword">if</span>(nextProps.x !== preState.x)&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      x: nextProps.x</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 回调在 componentDidUpdate处理</span></span><br><span class="line">componentDidUpdate(prevProps, prevState)&#123; <span class="comment">// 一次更新只触发一次</span></span><br><span class="line">  <span class="keyword">if</span>(prevState.x)&#123;</span><br><span class="line">    <span class="keyword">this</span>.handleBack();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>新生命周期： getSnapshotBeforeUpdate(prevProps, prevState) // 读取组件更新前DOM元素状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState)&#123;</span><br><span class="line">  <span class="keyword">if</span>(prevProps.x &lt; <span class="keyword">this</span>.props.x)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'snapshot'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">componentDidUpdate(prevProps, prevState, snapshot)&#123;....&#125;</span><br></pre></td></tr></table></figure>
+<p>升级：将compoentWillUpdate中的回调迁移至 componentDidUpdate, dom元素状态获取迁移至 getSnapshotBeforeUpdate中</p>
+<h3 id="虚拟DOM-working"><a href="#虚拟DOM-working" class="headerlink" title="虚拟DOM working"></a>虚拟DOM working</h3><p><a href="https://medium.com/@rajaraodv/the-inner-workings-of-virtual-dom-666ee7ad47cf" target="_blank" rel="noopener">The Inner Workings Of Virtual DOM</a><br><img src="/images/react-working.png" alt="The Inner Workings Of Virtual DOM"></p>
+</li>
 </ul>
+<ol>
+<li>Babel and JSX</li>
+<li>Creating VNode - A single virtual DOM element</li>
+<li>Dealing with components and sub-components</li>
+<li>Initial rendering and creating a DOM element</li>
+<li>Re-rendering</li>
+<li>Removing DOM element</li>
+<li>Replacing a DOM element</li>
+</ol>
 
       
     </div>
@@ -528,7 +552,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +563,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -550,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -599,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#深入理解React高阶组件"><span class="nav-number">1.</span> <span class="nav-text">深入理解React高阶组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react同构"><span class="nav-number">2.</span> <span class="nav-text">react同构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#深入理解React高阶组件"><span class="nav-number">1.</span> <span class="nav-text">深入理解React高阶组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react同构"><span class="nav-number">2.</span> <span class="nav-text">react同构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number"></span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟DOM-working"><span class="nav-number"></span> <span class="nav-text">虚拟DOM working</span></a></div>
             
 
           </div>
