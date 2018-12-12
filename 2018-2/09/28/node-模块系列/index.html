@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Bu">
+<meta name="description" content="Path常用方法Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已">
 <meta name="keywords" content="node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node 模块系列">
 <meta property="og:url" content="http://yoursite.com/2018-2/09/28/node-模块系列/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Bu">
+<meta property="og:description" content="Path常用方法Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/node-streams.png">
 <meta property="og:image" content="http://yoursite.com/images/readable-stream.png">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://yoursite.com/images/cluster-2.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster-3.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster-4.png">
-<meta property="og:updated_time" content="2018-10-11T03:56:15.000Z">
+<meta property="og:updated_time" content="2018-12-12T08:36:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node 模块系列">
-<meta name="twitter:description" content="Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已确定数据 1Bu">
+<meta name="twitter:description" content="Path常用方法Buffer概念Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)表现形式类似整数数组：eg:  创建Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)  存储已">
 <meta name="twitter:image" content="http://yoursite.com/images/node-streams.png">
 
 
@@ -371,7 +371,7 @@
       
 
       
-        <h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><em>Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。</em><br>在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)<br>表现形式类似整数数组：eg: <buffer 01="" ff=""></buffer></p>
+        <h3 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h3><h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><em>Buffer类是作为Node.js API的一部分引入的，可以操作或与二进制数据流进行交互。</em><br>在v8堆内存以外开辟的存放二进制数据的区域；该内存空间不会被计算在node进程中，所以常用于存储大对象数据(32位1G大小，64位2G大小)<br>表现形式类似整数数组：eg: <buffer 01="" ff=""></buffer></p>
 <h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>Buffer为全局变量，无需引入(注： buffer.Buffer === Buffer)</p>
 <ul>
 <li><p>存储已确定数据</p>
@@ -556,7 +556,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +567,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -627,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer"><span class="nav-number">1.</span> <span class="nav-text">Buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">1.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streams"><span class="nav-number">2.</span> <span class="nav-text">Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-1"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分类"><span class="nav-number">2.1.1.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现流"><span class="nav-number">2.2.</span> <span class="nav-text">实现流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流对象模型"><span class="nav-number">2.3.</span> <span class="nav-text">流对象模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-了解事件驱动体系结构"><span class="nav-number">3.</span> <span class="nav-text">Event: 了解事件驱动体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Child-Processes"><span class="nav-number">4.</span> <span class="nav-text">Child Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cluster-集群"><span class="nav-number">5.</span> <span class="nav-text">cluster(集群)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Path"><span class="nav-number">1.</span> <span class="nav-text">Path</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer"><span class="nav-number">2.</span> <span class="nav-text">Buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">2.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">2.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streams"><span class="nav-number">3.</span> <span class="nav-text">Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-1"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分类"><span class="nav-number">3.1.1.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现流"><span class="nav-number">3.2.</span> <span class="nav-text">实现流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流对象模型"><span class="nav-number">3.3.</span> <span class="nav-text">流对象模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-了解事件驱动体系结构"><span class="nav-number">4.</span> <span class="nav-text">Event: 了解事件驱动体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Child-Processes"><span class="nav-number">5.</span> <span class="nav-text">Child Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cluster-集群"><span class="nav-number">6.</span> <span class="nav-text">cluster(集群)</span></a></li></ol></div>
             
 
           </div>
