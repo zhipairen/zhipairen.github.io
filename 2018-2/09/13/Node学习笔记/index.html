@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-11T06:27:58.000Z">
+<meta property="og:updated_time" content="2018-12-13T10:28:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs">
 <meta name="twitter:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
@@ -391,6 +391,12 @@
 <p><em>我们可以将整个流和缓冲过程视为公交车站。在一些公交车站，在一定数量的乘客到达或直到特定的出发时间之前，不允许公共汽车离开。</em><br><em>此外，乘客可以以不同的速度到达不同的时间。乘客和公交车站都无法控制乘客到达车站。</em></p>
 <p><em>无论如何，总会有一个等待的地方。那是Buffer to Node.js！ Node.js无法控制数据到达的速度或时间，流的速度。它只能决定何时发送数据。如果还没有时间，</em><br><em>Node.js会将它们放入缓冲区(buffer) - “等待区” -  RAM中的一个小位置，直到将它们发送出去进行处理</em></p>
 <h3 id="构建api"><a href="#构建api" class="headerlink" title="构建api"></a>构建api</h3><p>前后端分离两大优势：1、 可重复使用的api 2、关注点分离</p>
+<h3 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h3><h4 id="js在V8中的元素种类及性能优化"><a href="#js在V8中的元素种类及性能优化" class="headerlink" title="js在V8中的元素种类及性能优化"></a>js在V8中的元素种类及性能优化</h4><p>在 V8 中，如果属性名是数字，会称属性为特殊名称： <em>元素</em>, <em>将它们与非数字属性分开存储以进行优化</em><br>对应的有三种不同元素类型值：</p>
+<ul>
+<li>小整数，又称 Smi: PACKED_SMI_ELEMENTS</li>
+<li>双精度浮点数: PACKED_DOUBLE_ELEMENTS</li>
+<li>常规元素（eg:’a’)：PACKED_ELEMENTS<br><em>注： 元素种类转换只能从一个方向进行：特定 =&gt; 普遍</em><h4 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h4>堆(Heap)是非结构化区域，动态分配内存，在运行时会分配和释放</li>
+</ul>
 
       
     </div>
@@ -583,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建api"><span class="nav-number">2.</span> <span class="nav-text">构建api</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建api"><span class="nav-number">2.</span> <span class="nav-text">构建api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v8"><span class="nav-number">3.</span> <span class="nav-text">v8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#js在V8中的元素种类及性能优化"><span class="nav-number">3.1.</span> <span class="nav-text">js在V8中的元素种类及性能优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC-垃圾回收"><span class="nav-number">3.2.</span> <span class="nav-text">GC 垃圾回收</span></a></li></ol></li></ol></div>
             
 
           </div>
