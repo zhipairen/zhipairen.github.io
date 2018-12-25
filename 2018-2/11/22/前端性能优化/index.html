@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
+<meta name="description" content="性能优化 SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 SSR: 减少首次渲染时间 CDN: 存放公共不变的包 PWA进一步优化 首屏采用“骨架图” 页面切换Loading 正确设置 HTTP cache 图片图">
 <meta name="keywords" content="优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
 <meta property="og:url" content="http://yoursite.com/2018-2/11/22/前端性能优化/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
+<meta property="og:description" content="性能优化 SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 SSR: 减少首次渲染时间 CDN: 存放公共不变的包 PWA进一步优化 首屏采用“骨架图” 页面切换Loading 正确设置 HTTP cache 图片图">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-23T02:07:43.000Z">
+<meta property="og:updated_time" content="2018-12-25T05:46:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化">
-<meta name="twitter:description" content="SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 PWA进一步优化 首屏采用“骨架图” 页面切换Loading图片图片加载优化启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载">
+<meta name="twitter:description" content="性能优化 SPA优化 并行加载bundle和拉取初始数据 根据路由拆分，异步加载组件，减少初始体积 利用webpack提取打包公共Bundle—提高复用&amp;amp;缓存命中 组件预加载 tree shaking(树摇)优化,降低bundle体积 SSR: 减少首次渲染时间 CDN: 存放公共不变的包 PWA进一步优化 首屏采用“骨架图” 页面切换Loading 正确设置 HTTP cache 图片图">
 
 
 
@@ -363,15 +363,19 @@
       
 
       
-        <h3 id="SPA优化"><a href="#SPA优化" class="headerlink" title="SPA优化"></a>SPA优化</h3><ul>
+        <p><a href="https://zhuanlan.zhihu.com/p/30349982" target="_blank" rel="noopener">性能优化</a></p>
+<h3 id="SPA优化"><a href="#SPA优化" class="headerlink" title="SPA优化"></a>SPA优化</h3><ul>
 <li>并行加载bundle和拉取初始数据</li>
 <li>根据路由拆分，异步加载组件，减少初始体积</li>
 <li>利用webpack提取打包公共Bundle—提高复用&amp;缓存命中</li>
 <li>组件预加载</li>
 <li>tree shaking(树摇)优化,降低bundle体积</li>
+<li>SSR: 减少首次渲染时间</li>
+<li>CDN: 存放公共不变的包</li>
 <li>PWA<br><strong>进一步优化</strong></li>
 <li>首屏采用“骨架图”</li>
-<li>页面切换Loading<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><a href="https://zhuanlan.zhihu.com/p/33370207#comments" target="_blank" rel="noopener">图片加载优化</a><br><strong>启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载<em>首屏</em>(首先进入屏幕视窗内的区域范围)所需的图片</strong></li>
+<li>页面切换Loading</li>
+<li>正确设置 HTTP cache <h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><a href="https://zhuanlan.zhihu.com/p/33370207#comments" target="_blank" rel="noopener">图片加载优化</a><br><strong>启动时加载过多图片，在Chrome浏览器中，同一域名，最多支持6个请求并发，所以可优先加载<em>首屏</em>(首先进入屏幕视窗内的区域范围)所需的图片</strong></li>
 </ul>
 <ol>
 <li>通过<em>getBoundingClientRect</em>方法，获取图片位置信息，判断是否在 viewport内部<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。</span></span><br><span class="line"><span class="keyword">const</span> inViewport = <span class="function">(<span class="params">el</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> rect = el.getBoundingClientRect();</span><br><span class="line">    <span class="keyword">return</span> rect.top &gt; <span class="number">0</span> </span><br><span class="line">        &amp;&amp; rect.bottom &lt; <span class="built_in">window</span>.innerHeight</span><br><span class="line">        &amp;&amp; rect.left &gt; <span class="number">0</span></span><br><span class="line">        &amp;&amp; rect.right &lt; <span class="built_in">window</span>.innerWidth</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

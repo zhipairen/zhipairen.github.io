@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="后端知识整理集 小知识点 CPU多级缓存：L1 Cache(12k)、L2 Cache(256k)、L3 Cache(12M),级别越小越接近CPU，所以速度也更快，同时也代表着容量越小。 缓存是由缓存行组成的，一般一行64字节，是cpu操作最小单位12345class person &amp;#123;    constructor()&amp;#123;            &amp;#125;&amp;#125;   J">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T10:08:42.000Z">
+<meta property="og:updated_time" content="2018-12-24T08:33:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端知识点记录">
 <meta name="twitter:description" content="后端知识整理集 小知识点 CPU多级缓存：L1 Cache(12k)、L2 Cache(256k)、L3 Cache(12M),级别越小越接近CPU，所以速度也更快，同时也代表着容量越小。 缓存是由缓存行组成的，一般一行64字节，是cpu操作最小单位12345class person &amp;#123;    constructor()&amp;#123;            &amp;#125;&amp;#125;   J">
@@ -369,7 +369,14 @@
 <li>缓存是由缓存行组成的，一般一行64字节，是cpu操作最小单位<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">阮一峰 jwt</a></p>
+<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">阮一峰 jwt</a><br>JWT token组成：Header(头部).Payload(负载).Signature(签名),由三部分的数据经Base64Url转成字符串组合成<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Signature = HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + <span class="string">"."</span> +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret);</span><br></pre></td></tr></table></figure></p>
+<p>JWT 本身包含了认证信息，存储在客户端token中, 一旦泄露token，任何人都可获得该令牌的所有权限。设置主动过期，并使用 HTTPS协议传输</p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="noopener">OAuth 开放授权</a><br>简单步骤：</p>
+<ol>
+<li>第三方应用请求导向认证服务，获得授权许可（重定向之后携带code)</li>
+<li>根据code向认证服务获取授权token(access_token)</li>
+<li>根据授权token，去获取用户已授权可获取的资源</li>
+</ol>
 <h3 id="SSH-安全外壳协议"><a href="#SSH-安全外壳协议" class="headerlink" title="SSH(安全外壳协议)"></a>SSH(安全外壳协议)</h3>
       
     </div>
