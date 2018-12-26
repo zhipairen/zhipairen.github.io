@@ -263,6 +263,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/09/13/Node学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-2/09/13/Node学习笔记/" itemprop="url">Nodejs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T14:09:56+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/" itemprop="url" rel="index">
+                    <span itemprop="name">node后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/koa/" itemprop="url" rel="index">
+                    <span itemprop="name">koa</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node后端/koa/exactly/" itemprop="url" rel="index">
+                    <span itemprop="name">exactly</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="解释Node"><a href="#解释Node" class="headerlink" title="解释Node"></a>解释Node</h3><blockquote>
+<p><a href="https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5" target="_blank" rel="noopener">what exactly is Node.js</a></p>
+</blockquote>
+<p>Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,<strong>使用事件驱动的非阻塞I/O模型，使其轻量且高效</strong>。</p>
+<blockquote>
+<p><a href="https://medium.freecodecamp.org/do-you-want-a-better-understanding-of-buffer-in-node-js-check-this-out-2e29de2968e8" target="_blank" rel="noopener">understanding of Buffer, Streams, Binary data</a><br>更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制数据)</p>
+</blockquote>
+<p>字符，图像，视频都有关于如何转换或编码将其存储在二进制文件中的规定规则，<em>在计算机中所有的数据类型都存储在二进制文件中，称为二进制数据</em></p>
+<ul>
+<li>字符集： Unicode, ASCII（字符映射的数字，eg: L =&gt; 76);</li>
+<li>字符编码：UTF-8 (一个字节由几位bits,eg: 1Byte = 8 bit)</li>
+</ul>
+<p>流：Node.js中的流只是意味着一段数据随着时间的推移从一个点移动到另一个点。整个概念是，您需要处理大量数据，但在开始处理之前无需等待所有数据可用。</p>
+<p>通常，数据的移动通常是为了处理或读取数据，并基于它做出决策。但是，随着时间的推移，流程可能需要的最小和最大数据量。<br>因此，如果数据到达的速率比进程消耗数据的速率快，则多余的数据需要在某处等待轮流进行处理;<br>另一方面，如果进程消耗的数据比它到达的速度快，那么早先到达的少数数据需要等待一定量的数据到达才能被发送出去进行处理。<br>那个“等候区”就是缓冲区！它是计算机中的一个小型物理位置，通常位于RAM中，数据在时间上被收集，等待，并最终在流式传输期间发送出去进行处理。</p>
+<p><em>我们可以将整个流和缓冲过程视为公交车站。在一些公交车站，在一定数量的乘客到达或直到特定的出发时间之前，不允许公共汽车离开。</em><br><em>此外，乘客可以以不同的速度到达不同的时间。乘客和公交车站都无法控制乘客到达车站。</em></p>
+<p><em>无论如何，总会有一个等待的地方。那是Buffer to Node.js！ Node.js无法控制数据到达的速度或时间，流的速度。它只能决定何时发送数据。如果还没有时间，</em><br><em>Node.js会将它们放入缓冲区(buffer) - “等待区” -  RAM中的一个小位置，直到将它们发送出去进行处理</em></p>
+<h3 id="构建api"><a href="#构建api" class="headerlink" title="构建api"></a>构建api</h3><p>前后端分离两大优势：1、 可重复使用的api 2、关注点分离</p>
+<h3 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h3><h4 id="js在V8中的元素种类及性能优化"><a href="#js在V8中的元素种类及性能优化" class="headerlink" title="js在V8中的元素种类及性能优化"></a>js在V8中的元素种类及性能优化</h4><p>在 V8 中，如果属性名是数字，会称属性为特殊名称： <em>元素</em>, <em>将它们与非数字属性分开存储以进行优化</em><br>对应的有三种不同元素类型值：</p>
+<ul>
+<li>小整数，又称 Smi: PACKED_SMI_ELEMENTS</li>
+<li>双精度浮点数: PACKED_DOUBLE_ELEMENTS</li>
+<li>常规元素（eg:’a’)：PACKED_ELEMENTS<br><em>注： 元素种类转换只能从一个方向进行：特定 =&gt; 普遍</em><h4 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h4>堆(Heap)是非结构化区域，动态分配内存，在运行时会分配和释放</li>
+</ul>
+<h4 id="module-exports-amp-amp-exports"><a href="#module-exports-amp-amp-exports" class="headerlink" title="module.exports &amp;&amp; exports"></a>module.exports &amp;&amp; exports</h4><p>在js文件中，<em>require获取到的是 module.exports 指向的对象</em>, exports与module.exports都是引用类型，指向同一块内存的对象，<br>但是<em>当为exports单独赋予 新的引用地址(指向别的对象) 或 基本类型时</em>，module.exports还是原引用指向的对象，不会被exports影响。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">    exports: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> exports = <span class="built_in">module</span>.exports; <span class="comment">// 引用同一块内存中的对象</span></span><br><span class="line">exports.name = <span class="string">'test'</span>;</span><br><span class="line"><span class="built_in">module</span>.exports.name === <span class="string">'test'</span>;<span class="comment">// true</span></span><br><span class="line"><span class="comment">// but</span></span><br><span class="line">exports = &#123;</span><br><span class="line">    name: <span class="string">'but'</span></span><br><span class="line">&#125;; <span class="comment">// exports变量指向新的引用</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports) <span class="comment">// &#123; name: 'test'&#125;</span></span><br><span class="line"><span class="keyword">export</span>.name === <span class="string">'but'</span></span><br><span class="line"><span class="comment">// 函数的形参其实就是 活动对象中的 变量</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/06/27/How-JavaScript-works-系列一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1379,6 +1566,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/12/26/前端那些事/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="纸牌人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016-2/12/26/前端那些事/" itemprop="url">前端那些事</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-26T10:33:24+08:00">
+                2016-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>路由： 检测url变化，解析url来匹配路由规则。 注： <em>URL到函数的映射</em></p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/53064386" target="_blank" rel="noopener">https://www.zhihu.com/question/53064386</a><br><strong>前后端路由区别</strong><br>后端路由：web服务接收到请求，解析url路径，然后请求对应的<em>资源</em>。注：web服务不会解析hash<br>前端路由： 由浏览器控制，js解析控制，响应不同路径变化，注：无刷新，spa应用<br>目前实现前端路由的两种方式：</p>
+<ul>
+<li>通过改变 hash 值，监听 onhashchange事件，兼容低版本浏览器</li>
+<li>通过 history对象，监听 popState事件，有pushState和replaceState方法，为会话历史栈添加路由信息。<br>注：history 的两个api可以<em>改变url地址且不会发送请求，但当主动刷新页面时，还是会向服务器发送请求，所以需要服务器把所有路由重定向到根页面</em></li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/12/10/牛人集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1519,309 +1855,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/12/04/前端题集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="terry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="纸牌人">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016-2/12/04/前端题集/" itemprop="url">前端题集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-04T10:58:54+08:00">
-                2016-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p><strong>async</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'saync1 start'</span>);</span><br><span class="line">    awiat async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)  </span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"><span class="comment">// 结果：</span></span><br><span class="line"><span class="comment">// script start</span></span><br><span class="line"><span class="comment">// async1 start</span></span><br><span class="line"><span class="comment">// async2： await表达式之后返回Promise,跳出 async1函数体</span></span><br><span class="line"><span class="comment">// promise1</span></span><br><span class="line"><span class="comment">// script end</span></span><br><span class="line"><span class="comment">// promise2</span></span><br><span class="line"><span class="comment">// async1 end</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>questions</strong></p>
-<ol>
-<li>将多层数组转换成一层数组<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> testArr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>, [<span class="number">5</span>, <span class="number">6</span>]]];</span><br><span class="line"><span class="keyword">const</span> flatten = <span class="function"><span class="params">arr</span> =&gt;</span> arr.reduce(</span><br><span class="line">    (flat,next) =&gt; flat.concat(<span class="built_in">Array</span>.isArray(next)? flatten(next): next),</span><br><span class="line">    []</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016-2/11/19/css资源合集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="terry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="纸牌人">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016-2/11/19/css资源合集/" itemprop="url">css资源合集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-19T15:04:14+08:00">
-                2016-11-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="牛人总结集"><a href="#牛人总结集" class="headerlink" title="牛人总结集"></a>牛人总结集</h3><ul>
-<li><a href="https://lhammer.cn/You-need-to-know-css/#/" target="_blank" rel="noopener">常见css效果合集</a></li>
-</ul>
-<h3 id="布局那些事"><a href="#布局那些事" class="headerlink" title="布局那些事"></a>布局那些事</h3><p><strong>Grid: 网格布局</strong><br>base: 网格线(Grid Lines)、网格轨道(Grid Track)、网格单元格(Grid Cell)、网格区域(Grid Area)、网格容器(Grid Containers)、order<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">grid-column-start</span>: <span class="number">1</span>; <span class="comment">/* 列线起始 */</span></span><br><span class="line">    <span class="attribute">grid-column-end</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">grid-row-start</span>: <span class="number">2</span>; <span class="comment">/* 行线起始 */</span></span><br><span class="line">    <span class="attribute">grid-row-end</span>: <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 网格线简写 */</span></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">grid-column</span>: <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">grid-row</span>: <span class="number">2</span> / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 网格区域 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">grid-area</span>: <span class="number">2</span> / <span class="number">1</span> / <span class="number">4</span> / <span class="number">3</span>; <span class="comment">/* row-start/column-satrt/row-end/column-end */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1872,7 +1905,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1883,7 +1916,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1894,7 +1927,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

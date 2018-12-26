@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T10:28:12.000Z">
+<meta property="og:updated_time" content="2018-12-26T09:32:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs">
 <meta name="twitter:description" content="解释Node what exactly is Node.js  Node.js是基于Chrome的V8 JavaScript引擎构建的JavaScript运行时,使用事件驱动的非阻塞I/O模型，使其轻量且高效。  understanding of Buffer, Streams, Binary data更简单的理解： Buffer(缓冲) 、 Streams(流)、 binary data(二进制">
@@ -397,6 +397,7 @@
 <li>双精度浮点数: PACKED_DOUBLE_ELEMENTS</li>
 <li>常规元素（eg:’a’)：PACKED_ELEMENTS<br><em>注： 元素种类转换只能从一个方向进行：特定 =&gt; 普遍</em><h4 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h4>堆(Heap)是非结构化区域，动态分配内存，在运行时会分配和释放</li>
 </ul>
+<h4 id="module-exports-amp-amp-exports"><a href="#module-exports-amp-amp-exports" class="headerlink" title="module.exports &amp;&amp; exports"></a>module.exports &amp;&amp; exports</h4><p>在js文件中，<em>require获取到的是 module.exports 指向的对象</em>, exports与module.exports都是引用类型，指向同一块内存的对象，<br>但是<em>当为exports单独赋予 新的引用地址(指向别的对象) 或 基本类型时</em>，module.exports还是原引用指向的对象，不会被exports影响。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">    exports: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> exports = <span class="built_in">module</span>.exports; <span class="comment">// 引用同一块内存中的对象</span></span><br><span class="line">exports.name = <span class="string">'test'</span>;</span><br><span class="line"><span class="built_in">module</span>.exports.name === <span class="string">'test'</span>;<span class="comment">// true</span></span><br><span class="line"><span class="comment">// but</span></span><br><span class="line">exports = &#123;</span><br><span class="line">    name: <span class="string">'but'</span></span><br><span class="line">&#125;; <span class="comment">// exports变量指向新的引用</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports) <span class="comment">// &#123; name: 'test'&#125;</span></span><br><span class="line"><span class="keyword">export</span>.name === <span class="string">'but'</span></span><br><span class="line"><span class="comment">// 函数的形参其实就是 活动对象中的 变量</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -518,7 +519,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +530,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -540,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -589,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建api"><span class="nav-number">2.</span> <span class="nav-text">构建api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v8"><span class="nav-number">3.</span> <span class="nav-text">v8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#js在V8中的元素种类及性能优化"><span class="nav-number">3.1.</span> <span class="nav-text">js在V8中的元素种类及性能优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC-垃圾回收"><span class="nav-number">3.2.</span> <span class="nav-text">GC 垃圾回收</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释Node"><span class="nav-number">1.</span> <span class="nav-text">解释Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建api"><span class="nav-number">2.</span> <span class="nav-text">构建api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v8"><span class="nav-number">3.</span> <span class="nav-text">v8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#js在V8中的元素种类及性能优化"><span class="nav-number">3.1.</span> <span class="nav-text">js在V8中的元素种类及性能优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC-垃圾回收"><span class="nav-number">3.2.</span> <span class="nav-text">GC 垃圾回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module-exports-amp-amp-exports"><span class="nav-number">3.3.</span> <span class="nav-text">module.exports &amp;&amp; exports</span></a></li></ol></li></ol></div>
             
 
           </div>
