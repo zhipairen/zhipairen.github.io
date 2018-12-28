@@ -361,6 +361,7 @@
 <li>递归、尾调用</li>
 <li>乱序(v8在数组小于10采用插入排序,大于10采用快速排序)</li>
 </ul>
+<h3 id="辅助"><a href="#辅助" class="headerlink" title="辅助"></a>辅助</h3><p><strong>Monad</strong><br><strong>Ramda</strong></p>
 
           
         
@@ -1571,6 +1572,8 @@
 <p><strong>共享状态和负载均衡</strong><br>通过集群设置，我们不能再将内容缓存在内存中，因为每个工作进程都有自己的内存空间。</p>
 <p>如果我们需要使用集群设置来缓存内容，我们必须使用单独的实体并从所有工作者读取/写入该实体的API。<br>此实体可以是数据库服务器，或者如果要使用内存缓存，则可以使用Redis之类的服务器，或者创建一个带有读/写API的专用Node进程，供所有其他工作人员进行通信。<br><img src="/images/cluster-2.png" alt="cluster-result"></p>
 <p>工作进程状态通信<br><img src="/images/cluster-3.png" alt="cluster-result"><br>主进程进行身份验证,再发送给工作进程；<br>通过将这些会话的信息存储在共享数据库或Redis节点中，我们可以简单地在我们拥有的许多工作者之间共享状态。<br><img src="/images/cluster-4.png" alt="cluster-result"></p>
+<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>os 模块提供了一些操作系统相关的实用方法</p>
+<p><strong>常用方法</strong></p>
 
           
         
