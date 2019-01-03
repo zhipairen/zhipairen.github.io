@@ -450,7 +450,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/06/27/How-JavaScript-works-系列一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018-2/06/27/How-JavaScript-works/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="terry">
@@ -469,7 +469,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-2/06/27/How-JavaScript-works-系列一/" itemprop="url">How JavaScript works:系列一</a></h1>
+                <a class="post-title-link" href="/2018-2/06/27/How-JavaScript-works/" itemprop="url">How JavaScript works</a></h1>
         
 
         <div class="post-meta">
@@ -568,13 +568,14 @@
 </ol>
 <p>首次执行js代码时，V8利用 full-codegen 编译器直接翻译解析js代码为机器码不需要转换，执行速度快；v8没有使用中间字节码，不需要解释器；<br>当代码运行一段时间之后， profiler 线程收集了足够的数据告诉那些方法应该优化；<br>然后，Crankshaft 开始在另一个线程优化，它<em>将js的抽象语法树（AST)转换为名为Hydrogen的 高级的静态 SSA表示</em>，然后尝试优化它。</p>
 <p><strong>隐藏类</strong><br> js是以原型链为基础的语言，没有 class;<br> 同时 js 是一门<strong>动态编程</strong>语言，这意味着在实例化后，可以方便地添加或删除属性。</p>
-<p>大部分的js解释器利用 字典结构在内存中存储对象属性值；这种结构在检搜属性值比非 动态语言像java或c需要更多的计算；<br>静态语言的属性值在内存中容易得到 偏移量，从而快速找到，但js不行。<br>由于字典结构查找效率低，所以V8用 <em>隐藏类</em>代替，类似于固定了对象布局(classes)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 先 初始化隐藏类C0， x属性加入对象之后，更新为隐藏类 C1,x 的偏移量offset 0，</span></span><br><span class="line"><span class="comment">// 之后再加 y属性，更新隐藏类 C2, y的偏移量offset 1, 所以属性的顺序影响隐藏类顺序</span></span><br></pre></td></tr></table></figure></p>
+<p>大部分的js解释器利用 字典结构在内存中存储对象属性值；这种结构在检搜属性值比非 动态语言像java或c需要更多的计算；<br>静态语言的属性值在内存中容易得到 偏移量，从而快速找到，但js不行。<br>由于字典结构查找效率低，所以V8用 <em>隐藏类</em>代替，隐藏类存放对象属性的内存位置信息，类似于固定了对象布局(classes)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 先 初始化隐藏类C0， x属性加入对象之后，更新为隐藏类 C1,x 的偏移量offset 0，</span></span><br><span class="line"><span class="comment">// 之后再加 y属性，更新隐藏类 C2, y的偏移量offset 1, 所以属性的顺序影响隐藏类顺序</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Object的内存结构与属性访问</strong><br>在对象中创建新属性，V8会基于初始隐藏类C0,创建隐藏类C1替换C0,在C1中存放属性的内存位置信息；注： 对象会重复使用隐藏类；<br>对于对象上的方法，不在隐藏类中存放函数引用，而是<em>映射为 COnstant Function 描述符</em>，对象方法建议写在原型上；<br>对于复杂属性的对象，v8会采用字典模式来存储对象，也就是哈希表来存放键值信息</p>
 <p><strong>内联缓存</strong><br>如果v8能够很好的确定使用过的对象类型，那么它可以跳过找出对象属性的步骤，利用之前存储的对象里的隐藏类信息。<br>在特定对象上调用方法时，v8必须执行该对象隐藏类的查找，<em>以确定访问特定属性的偏移量</em>;<br>在将同一方法成功调用两次到同一隐藏类后，<em>v8省略隐藏类查找，将属性的偏移量添加到对象指针本身上</em>，在该方法的未来调用中，v8假定隐藏类未改变，<br><em>并使用先前查找到的偏移量直接跳到特定属性的内存地址</em>，大大提高执行速度。</p>
 <p><strong>GC 垃圾回收</strong><br>对于垃圾回收，V8采用传统的<em>标记和扫描方式清理</em>旧一代，标记阶段会停止js执行，所以V8使用<em>增量标记</em>：<br>不变量整个堆，尝试标记每个可能对象，只遍历堆的一部分，然后恢复正常执行；下一个GC从上一个堆行走停止的位置继续，扫描阶段由单独线程处理</p>
 <p><strong>Ignition and TurboFan</strong><br>新版本之后，新的执行管道建立在Ignition,V8解释器,TurboFan;<br>v8加入了字节码的中间代码转换，减小了内存使用，利用时间换空间，为进一步优化铺平了道路</p>
 <h4 id="如何写优雅的js"><a href="#如何写优雅的js" class="headerlink" title="如何写优雅的js"></a>如何写优雅的js</h4><ol>
 <li>对象属性的顺序： 相同的顺序方便隐藏类的顺序，加快查找</li>
-<li>动态属性：在实例化后的对象中添加属性会强制影响之前隐藏类优化的任何方法(offset不一致了)，所以<em>在其构造函数中分配所有对象属性</em></li>
+<li>动态属性：<em>在实例化后的对象中添加属性会强制影响之前隐藏类优化的任何方法(offset不一致了)，所以在其构造函数中分配所有对象属性</em></li>
 <li>方法： 重复执行相同的方法代码会比只执行一次的运行的快，由于内联缓存</li>
 <li>数组： 避免不是增量数的稀疏数组；避免预先分配大型数组，不要随便删除数组元素</li>
 <li>标记值： V8用32位表示对象和数字，它使用一位（flag=1)知道为对象，flag=0称为SMI的整数</li>
@@ -594,7 +595,7 @@
 <li>闭包：闭包指的是内部函数可以访问外部函数的变量；（eg: 循环引用、有关于全局变量的引用）</li>
 <li>DOM的外部引用： 当把DOM变量存储在对象中，会有两处引用，一处是Dom树，另一处是字典对象，只移除dom树的元素，容易造成内存泄漏</li>
 </ol>
-
+<h4 id="了解v8的垃圾回收算法"><a href="#了解v8的垃圾回收算法" class="headerlink" title="了解v8的垃圾回收算法"></a>了解v8的垃圾回收算法</h4>
           
         
       
@@ -2022,7 +2023,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
