@@ -595,7 +595,10 @@
 <li>闭包：闭包指的是内部函数可以访问外部函数的变量；（eg: 循环引用、有关于全局变量的引用）</li>
 <li>DOM的外部引用： 当把DOM变量存储在对象中，会有两处引用，一处是Dom树，另一处是字典对象，只移除dom树的元素，容易造成内存泄漏</li>
 </ol>
-<h4 id="了解v8的垃圾回收算法"><a href="#了解v8的垃圾回收算法" class="headerlink" title="了解v8的垃圾回收算法"></a>了解v8的垃圾回收算法</h4>
+<h4 id="了解v8的垃圾回收算法"><a href="#了解v8的垃圾回收算法" class="headerlink" title="了解v8的垃圾回收算法"></a>了解v8的垃圾回收算法</h4><blockquote>
+<p><a href="https://yq.aliyun.com/articles/592878" target="_blank" rel="noopener">解读 V8 GC(1)</a><br><a href="https://yq.aliyun.com/articles/592880" target="_blank" rel="noopener">解读 V8 GC(2)</a><br>垃圾回收器将对象分为新生代和老生代，新生代采用Scavenge回收策略，经历两次GC没有被回收的对象会晋升到老生代，<br>老生代采用 Mark-Sweep-Compact回收策略。<br>对象都按照 4 字节（32 位机器）或者 8 字节（64 位机器）对齐，判断最后一位是 0 还是 1，来直接分辨两种类型，1 表示指针，0 表示整数；<br>准确式GC,尽早区分出SMI结构。<br>函数创建的对象有很高存活率，将会直接在 old space分配，省略了这些对象在 New Space 第一次 GC 的时候大量复制到另一个 semispace，第二次 GC 又大量复制到 Old Space 的开销。即使猜错了，反正下一次老生代 GC 的时候这些对象也会被回收走。</p>
+</blockquote>
+
           
         
       
@@ -1710,6 +1713,13 @@
 </blockquote>
 <h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略： 同协议、同域名、同端口<br><strong>JSONP</strong><br>利用 <em>script</em> 元素的开放策略，可获得其他来源的js。<br>在该元素上的src属性，设置回调函数名称在服务器请求的查询参数上，服务器将数据填充到回调函数中<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">     <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(data)</span></span><br><span class="line"><span class="undefined">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// *提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）*</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 创建script标签，设置其属性</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span></span><br><span class="line"><span class="javascript">    script.setAttribute(<span class="string">'src'</span>, url);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 把script标签加入head，此时调用开始</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].appendChild(script);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>服务器端返回这样的js给客户端<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flightHandler(&#123;</span><br><span class="line">  <span class="string">"code"</span>: <span class="string">"CA1998"</span>,</span><br><span class="line">  <span class="string">"price"</span>: <span class="number">1780</span>,</span><br><span class="line">  <span class="string">"tickets"</span>: <span class="number">5</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="service-worker-服务工作线程"><a href="#service-worker-服务工作线程" class="headerlink" title="service worker 服务工作线程"></a>service worker 服务工作线程</h3><p><a href="https://developers.google.com/web/fundamentals/primers/service-workers/?hl=zh-cn" target="_blank" rel="noopener">google service worker</a><br>它支持离线体验。 相关事项：</p>
+<ul>
+<li>是一种js工作线程，无法直接访问 DOM；它通过响应 <em>postMessage</em> 接口发送的信息与页面通信</li>
+<li>是一种可编程的网络代理</li>
+<li>它在不用时会被中止，下次有需要时重启，若要保存重启后加以重用的信息，它可以访问 <em>IndexedDB API</em></li>
+<li>已广泛使用 promise</li>
+</ul>
 
           
         

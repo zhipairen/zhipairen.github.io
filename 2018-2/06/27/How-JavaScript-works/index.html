@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="系列二： V8引擎内部&amp;amp;&amp;amp;如何优化代码的5个技巧 原文出处  概念js引擎是执行js代码的程序或解释器。其中有谷歌开发的 V8 引擎，开源项目，由C++ 编写而成，被应用在chrome 和 node中。为了运行速度，V8转换 js 代码为更高效的 机器代码，它通过 Just-In-Time(JIT)即时编译器将js编译为机器码，不产生字节码或任何中间代码。注：最新V8引擎优化，加入">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-29T10:22:20.000Z">
+<meta property="og:updated_time" content="2019-01-10T07:41:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How JavaScript works">
 <meta name="twitter:description" content="系列二： V8引擎内部&amp;amp;&amp;amp;如何优化代码的5个技巧 原文出处  概念js引擎是执行js代码的程序或解释器。其中有谷歌开发的 V8 引擎，开源项目，由C++ 编写而成，被应用在chrome 和 node中。为了运行速度，V8转换 js 代码为更高效的 机器代码，它通过 Just-In-Time(JIT)即时编译器将js编译为机器码，不产生字节码或任何中间代码。注：最新V8引擎优化，加入">
@@ -404,7 +404,10 @@
 <li>闭包：闭包指的是内部函数可以访问外部函数的变量；（eg: 循环引用、有关于全局变量的引用）</li>
 <li>DOM的外部引用： 当把DOM变量存储在对象中，会有两处引用，一处是Dom树，另一处是字典对象，只移除dom树的元素，容易造成内存泄漏</li>
 </ol>
-<h4 id="了解v8的垃圾回收算法"><a href="#了解v8的垃圾回收算法" class="headerlink" title="了解v8的垃圾回收算法"></a>了解v8的垃圾回收算法</h4>
+<h4 id="了解v8的垃圾回收算法"><a href="#了解v8的垃圾回收算法" class="headerlink" title="了解v8的垃圾回收算法"></a>了解v8的垃圾回收算法</h4><blockquote>
+<p><a href="https://yq.aliyun.com/articles/592878" target="_blank" rel="noopener">解读 V8 GC(1)</a><br><a href="https://yq.aliyun.com/articles/592880" target="_blank" rel="noopener">解读 V8 GC(2)</a><br>垃圾回收器将对象分为新生代和老生代，新生代采用Scavenge回收策略，经历两次GC没有被回收的对象会晋升到老生代，<br>老生代采用 Mark-Sweep-Compact回收策略。<br>对象都按照 4 字节（32 位机器）或者 8 字节（64 位机器）对齐，判断最后一位是 0 还是 1，来直接分辨两种类型，1 表示指针，0 表示整数；<br>准确式GC,尽早区分出SMI结构。<br>函数创建的对象有很高存活率，将会直接在 old space分配，省略了这些对象在 New Space 第一次 GC 的时候大量复制到另一个 semispace，第二次 GC 又大量复制到 Old Space 的开销。即使猜错了，反正下一次老生代 GC 的时候这些对象也会被回收走。</p>
+</blockquote>
+
       
     </div>
     

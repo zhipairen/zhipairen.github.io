@@ -88,7 +88,7 @@
 <meta property="og:description" content="DNS服务器、IP地址、MAC地址 掘金MAC地址  计算机建立连接是网卡之间建立连接 网卡地址由供应商提供，全球唯一 网卡由48位的二进制组成： 24bite(供应商标识)+24bite(供应商提供的编号)   IP地址  由INternet分配机构统一分配，Ip地址标识网络中的一个节点 IP地址由32位二进制组成，网络标识区分A,B,C类，IP=网络标识+主机号 IP为255.255.255.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/TCP三次握手.png">
-<meta property="og:updated_time" content="2019-01-03T08:52:22.000Z">
+<meta property="og:updated_time" content="2019-01-10T06:24:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础知识">
 <meta name="twitter:description" content="DNS服务器、IP地址、MAC地址 掘金MAC地址  计算机建立连接是网卡之间建立连接 网卡地址由供应商提供，全球唯一 网卡由48位的二进制组成： 24bite(供应商标识)+24bite(供应商提供的编号)   IP地址  由INternet分配机构统一分配，Ip地址标识网络中的一个节点 IP地址由32位二进制组成，网络标识区分A,B,C类，IP=网络标识+主机号 IP为255.255.255.">
@@ -374,7 +374,9 @@
 <p>第一次握手主要是确定服务端确认客户端能够发送信号；第二次握手主要是客户端确认服务端能够接收和发送信号；第三次握手主要是服务端确认客户端能够接收信号<br>四次挥手：</p>
 <p>主机A发送FIN控制位发出断开连接的请求<br>主机B进行响应，确认收到断开连接请求<br>主机B提出反方向的关闭要求<br>主机A确认收到的主机B的关闭连接请求</p>
 <p>第一次挥手是服务端确认客户端需要断开连接；第二次挥手是客户端确认服务器接收断开请；第三次挥手是客户端确认服务器数据发完，断开连接；第四次挥手是服务端确认客户端断开连接，断开连接。所以如果服务端的数据全部发送完，是没有第三次挥手，直接进入第四次挥手。</p>
-<h3 id="堆空间和栈空间"><a href="#堆空间和栈空间" class="headerlink" title="堆空间和栈空间"></a>堆空间和栈空间</h3><p><a href="https://blog.csdn.net/capecape/article/details/78038997" target="_blank" rel="noopener">c++堆空间和栈空间的区别</a></p>
+<h3 id="堆空间和栈空间"><a href="#堆空间和栈空间" class="headerlink" title="堆空间和栈空间"></a>堆空间和栈空间</h3><p><a href="https://blog.csdn.net/capecape/article/details/78038997" target="_blank" rel="noopener">c++堆空间和栈空间的区别</a><br>栈区(stack): 由编译器自动分配释放，类似于数据结构的栈；在windows下，向地址扩展，是一块连续的内存区域；<br>存储函数下一条指令的地址，参数，局部变量等。</p>
+<p>堆区(heap): 由程序员分配释放，类似于链表；是向高地址扩展的，是不连续的内存区域；大小受限于有效的虚拟内存；<br>在堆的头部用一个字节存放堆大小，其他的自行安排。</p>
+<p>在一个进程的内存空间，逻辑上可分为3个部分： 代码区， 静态数据区(全局变量和静态变量), 动态数据区(堆栈区：通过堆栈的基地址和偏移量访问本地变量)</p>
 
       
     </div>
