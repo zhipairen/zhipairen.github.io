@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%param’非前">
+<meta name="description" content="常见sql少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%par">
 <meta name="keywords" content="sql挖矿">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sql优化记录">
 <meta property="og:url" content="http://yoursite.com/2017-2/11/12/sql优化记录/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%param’非前">
+<meta property="og:description" content="常见sql少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%par">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T03:06:28.000Z">
+<meta property="og:updated_time" content="2019-01-24T08:07:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sql优化记录">
-<meta name="twitter:description" content="少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%param’非前">
+<meta name="twitter:description" content="常见sql少挖坑少用负向条件查询负向条件查询： ！= 、 not in、not exists等 都不能使用索引1234-- error:select * from Order where Status != 0 -- correct:select * from Order where Status in (1, 2) 少用前导模糊查询前导模糊模糊查询无法命中索引: ‘%param%’, ‘%par">
 
 
 
@@ -352,7 +352,7 @@
       
 
       
-        <h3 id="少挖坑"><a href="#少挖坑" class="headerlink" title="少挖坑"></a>少挖坑</h3><p><strong>少用负向条件查询</strong><br>负向条件查询： ！= 、 not in、not exists等 都不能使用索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- error:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> != <span class="number">0</span> </span><br><span class="line"><span class="comment">-- correct:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+        <h3 id="常见sql"><a href="#常见sql" class="headerlink" title="常见sql"></a>常见sql</h3><h3 id="少挖坑"><a href="#少挖坑" class="headerlink" title="少挖坑"></a>少挖坑</h3><p><strong>少用负向条件查询</strong><br>负向条件查询： ！= 、 not in、not exists等 都不能使用索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- error:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> != <span class="number">0</span> </span><br><span class="line"><span class="comment">-- correct:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Status</span> <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong>少用前导模糊查询</strong><br>前导模糊模糊查询无法命中索引: ‘%param%’, ‘%param’<br>非前导： ‘param%’</p>
 <p><strong>少在条件字段进行运算</strong><br>使用运算函数，查询一样会进行全表检索<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- error:</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">Order</span> <span class="keyword">where</span> <span class="keyword">Year</span>(CreateTime)=<span class="number">2018</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>索引字段尽量不要允许NUll值</strong></p>
@@ -396,8 +396,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-2/06/26/typescript运用/" rel="prev" title="typescript运用">
-                typescript运用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-2/01/24/基本算法学习/" rel="prev" title="基本算法学习">
+                基本算法学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -475,7 +475,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -486,7 +486,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -497,7 +497,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -546,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#少挖坑"><span class="nav-number">1.</span> <span class="nav-text">少挖坑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见sql"><span class="nav-number">1.</span> <span class="nav-text">常见sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#少挖坑"><span class="nav-number">2.</span> <span class="nav-text">少挖坑</span></a></li></ol></div>
             
 
           </div>

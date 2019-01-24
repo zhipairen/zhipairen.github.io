@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="纸牌人">
 <meta property="og:description" content="异步async123456789101112131415161718192021222324252627282930async function async1()&amp;#123;    console.log(&apos;saync1 start&apos;);    awiat async2();    console.log(&apos;async1 end&apos;)&amp;#125;async function async2()&amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T10:37:32.000Z">
+<meta property="og:updated_time" content="2019-01-24T07:36:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端题集">
 <meta name="twitter:description" content="异步async123456789101112131415161718192021222324252627282930async function async1()&amp;#123;    console.log(&apos;saync1 start&apos;);    awiat async2();    console.log(&apos;async1 end&apos;)&amp;#125;async function async2()&amp;#12">
@@ -367,7 +367,21 @@
 </li>
 </ul>
 <p><strong>类和原型继承的区别</strong><br><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9" target="_blank" rel="noopener">What’s the Difference Between Class &amp; Prototypal Inheritance</a></p>
-<p>js是基于<em>原型继承</em>的。构造函数上的私有属性[[Prototype]]作为委托<br>ES6的‘class’关键字 是构造函数的语法糖<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">typeof</span> Foo <span class="comment">// 'function'</span></span><br></pre></td></tr></table></figure></p>
+<p>继承基本上是一种代码重用机制：一种让不同类型的对象共享代码的方法<br>js是基于<em>原型继承</em>的。JavaScript类继承使用原型链将子<code>Constructor.prototype</code>连接到父<code>Constructor.prototype</code>以进行委派。</p>
+<p>ES6的‘class’关键字 是构造函数的语法糖<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">typeof</span> Foo <span class="comment">// 'function'</span></span><br></pre></td></tr></table></figure></p>
+<p>类继承在OO设计中导致的问题：</p>
+<ul>
+<li>紧耦合性问题</li>
+<li>脆弱的基类问题</li>
+<li>不灵活的层次结构问题</li>
+<li>必要的重复问题</li>
+</ul>
+<p>三种原型继承：</p>
+<ul>
+<li>Concatenative inheritance(连接继承)：通过<em>复制源对象属性</em>将要素直接从一个对象继承到另一个对象的过程; eg: Object.assign(), …</li>
+<li>Prototype delegation(原型委托)：如果在对象上找不到属性，则将查找委托到<strong>proto</strong>指向的委托原型上，依此类推，直到<code>Object.prototype</code>为止。eg: Object.create()</li>
+<li>Functional inheritance(功能继承)：通过函数生成对象<br>委托原型不是类继承的绝佳替代 - 对象组合才是。</li>
+</ul>
 <p><strong>promise</strong><br><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261" target="_blank" rel="noopener">what is a Promise</a><br>Promise 是一个可能在未来某个时间产生单一值的对象.<br>其中单一值是resolved值或者rejected值，promise有三种状态： fulfilled, rejected, pending,状态转变之后将不可改变，then可以通过callback处理单一值。<br>promise的 .then 方法总是返回一个 new promise,以便 链式调用,调用中 rejected被执行之后，不会继续向下传递, 需要 .catch 捕抓 handleSuccess的错误<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPromise</span>(<span class="params">time</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span> &#123;</span><br><span class="line">        setTimeout(resolve, time)</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reject 推荐返回 Error对象，有利捕抓调用栈</span></span><br><span class="line">createPromise(<span class="number">3000</span>).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    callback(res) <span class="comment">// 若返回 x 是 new promise,则 .then 返回的 promise2 将被锁住，promise2 需要 x值</span></span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">new</span> Promsise( <span class="function"><span class="params">res</span> =&gt;</span> res(<span class="string">'foo'</span>)))</span><br><span class="line">.then(<span class="function"><span class="params">a</span> =&gt;</span> <span class="built_in">console</span>.log(a)) <span class="comment">// foo</span></span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="literal">null</span>)</span><br><span class="line">.then(<span class="function"><span class="params">c</span> =&gt;</span> <span class="built_in">console</span>.log(c)) <span class="comment">// null</span></span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'err'</span>);&#125;)</span><br><span class="line">.then(</span><br><span class="line">    d =&gt; <span class="built_in">console</span>.log(d),</span><br><span class="line">    e =&gt; <span class="built_in">console</span>.log(e) <span class="comment">// [Error: err]</span></span><br><span class="line">)</span><br><span class="line">.then( <span class="function"><span class="params">f</span> =&gt;</span> <span class="built_in">console</span>.log(f)) <span class="comment">// undefined</span></span><br><span class="line">.catch( <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e)) <span class="comment">// 不会处理，因为之前的错误已经被处理</span></span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'bar'</span>);&#125;)</span><br><span class="line">.then( <span class="function"><span class="params">g</span> =&gt;</span> <span class="built_in">console</span>.log(g))</span><br><span class="line">.catch( <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e)) <span class="comment">// [Error: bar]</span></span><br><span class="line"></span><br><span class="line">createPromise(<span class="number">2000</span>)</span><br><span class="line">  .then(handleSuccess)</span><br><span class="line">  .catch(handleError);</span><br></pre></td></tr></table></figure></p>
 
       
@@ -488,7 +502,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -499,7 +513,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -510,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
