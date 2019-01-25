@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="十大经典排序算法1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;    le">
+<meta name="description" content="十大经典排序算法动图演示1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基本算法学习">
 <meta property="og:url" content="http://yoursite.com/2018-2/01/24/基本算法学习/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="十大经典排序算法1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;    le">
+<meta property="og:description" content="十大经典排序算法动图演示1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-24T10:27:43.000Z">
+<meta property="og:updated_time" content="2019-01-25T10:03:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本算法学习">
-<meta name="twitter:description" content="十大经典排序算法1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;    le">
+<meta name="twitter:description" content="十大经典排序算法动图演示1. 冒泡排序(Bubble Sort)算法描述：  比较相邻元素。如果第一个比第二大就交换； 对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素 重复操作，直到排序完成1234567891011121314151617// es5function bubbleSort(arr)&amp;#123;    const len = arr.length;">
 
 
 
@@ -352,7 +352,7 @@
       
 
       
-        <h3 id="十大经典排序算法"><a href="#十大经典排序算法" class="headerlink" title="十大经典排序算法"></a>十大经典排序算法</h3><p><strong>1. 冒泡排序(Bubble Sort)</strong><br>算法描述：</p>
+        <h3 id="十大经典排序算法"><a href="#十大经典排序算法" class="headerlink" title="十大经典排序算法"></a>十大经典排序算法</h3><p><a href="https://www.cnblogs.com/onepixel/p/7674659.html" target="_blank" rel="noopener">动图演示</a><br><strong>1. 冒泡排序(Bubble Sort)</strong><br>算法描述：</p>
 <ul>
 <li>比较相邻元素。如果第一个比第二大就交换；</li>
 <li>对每一对相邻元素做同样的比较，从第一对开始，这样最后的元素就应该是最大的元素</li>
@@ -360,7 +360,30 @@
 </li>
 </ul>
 <p><strong>2.选择排序(Selection Sort)</strong><br>工作原理： 首先在未排序序列中找到最小(大)元素，存放到序列首位，然后，再从剩余未排序序列中继续寻找最小(大)元素，放到已排序序列末尾，依此类推，直至排序完毕<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len = arr.length;</span><br><span class="line">    <span class="keyword">let</span> minIndex, temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        minIndex = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">           <span class="keyword">if</span>( arr[j] &lt; arr[minIndex])&#123;</span><br><span class="line">               minIndex = j; <span class="comment">// 保存最小数索引</span></span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 互换顺序</span></span><br><span class="line">        temp = arr[i];</span><br><span class="line">        arr[i] = arr[minIndex];</span><br><span class="line">        arr[minIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>插入排序(Insertion Sort)</strong></p>
+<p><strong>插入排序(Insertion Sort)</strong><br>描述：</p>
+<ul>
+<li>从第一个元素开始，该元素认为已排序序列</li>
+<li>取出下一个元素，在已排序序列从后向前扫描</li>
+<li>如果已排序元素大于新元素，将向前移至下一位，直到找到已排序序列中小于或等于新元素的位置</li>
+<li>将新元素插入该位置，重复步骤<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len = arr.length;</span><br><span class="line">    <span class="keyword">let</span> preIndex, current;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++)&#123;</span><br><span class="line">        current = arr[i];</span><br><span class="line">        preIndex = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(preIndex &gt;= <span class="number">0</span> &amp;&amp; arr[preIndex] &gt; current)&#123;</span><br><span class="line">            arr[preIndex + <span class="number">1</span>] = arr[preIndex];</span><br><span class="line">            preIndex--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[preIndex + <span class="number">1</span>] = current;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>希尔排序(Shell Sort)</strong></p>
+<p><strong>归并排序(Merge Sort)</strong><br>描述：</p>
+<ul>
+<li>将长度为n的序列分成两个长度为n/2的子序列</li>
+<li>对两个子序列分别采用归并排序(即继续2分为子序列)</li>
+<li>将排好的子序列合并成最终排序序列<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// todo</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>)</span>&#123; <span class="comment">// 采用递归方法</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>快速排序(Quick Sort)</strong><br>描述：</p>
+<ul>
+<li>从数列中挑出一个元素，称为 “基准”（pivot）；</li>
+<li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>堆排序(Heap Sort)</strong></p>
 
       
     </div>
@@ -502,7 +525,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
