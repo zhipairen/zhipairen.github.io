@@ -526,6 +526,7 @@
 <h3 id="堆空间和栈空间"><a href="#堆空间和栈空间" class="headerlink" title="堆空间和栈空间"></a>堆空间和栈空间</h3><p><a href="https://blog.csdn.net/capecape/article/details/78038997" target="_blank" rel="noopener">c++堆空间和栈空间的区别</a><br>栈区(stack): 由编译器自动分配释放，类似于数据结构的栈；在windows下，向地址扩展，是一块连续的内存区域；<br>存储函数下一条指令的地址，参数，局部变量等。</p>
 <p>堆区(heap): 由程序员分配释放，类似于链表；是向高地址扩展的，是不连续的内存区域；大小受限于有效的虚拟内存；<br>在堆的头部用一个字节存放堆大小，其他的自行安排。</p>
 <p>在一个进程的内存空间，逻辑上可分为3个部分： 代码区， 静态数据区(全局变量和静态变量), 动态数据区(堆栈区：通过堆栈的基地址和偏移量访问本地变量)</p>
+<h3 id="mime类型"><a href="#mime类型" class="headerlink" title="mime类型"></a>mime类型</h3><p>浏览器通常使用MIME类型（而不是文件扩展名）来确定如何处理文档。<br>结构： type/subtype<br>独立类型type: text、image、audio、video、application(某种二进制数据)<br>Multipart 类型: multipart/form-data、 multipart/byteranges</p>
 
           
         
@@ -762,7 +763,8 @@
 <li><p>只在react 函数调用hooks<br>依赖顺序确定对应的hooks; eslint可用插件： eslint-plugin-react-hooks </p>
 <p><strong>custom hook</strong><br>自定义hook是一个以 ‘use’开头的js函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useFriendStatus</span>(<span class="params">friendID</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [isOnline, setIsOnline] = useState(<span class="literal">null</span>);</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123; ... &#125;);</span><br><span class="line">  <span class="keyword">return</span> isOnline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p><strong>react-router-dom</strong><br><a href="https://reacttraining.com/react-router/web/guides/quick-start" target="_blank" rel="noopener">react-router guides</a><br>当渲染一个组件时<route>有三个属性： component, render, children; render适用于行内函数</route></p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p><strong>react-router-dom</strong><br><a href="https://reacttraining.com/react-router/web/guides/quick-start" target="_blank" rel="noopener">react-router guides</a><br>当渲染一个组件时<route>有三个属性： component, render, children; render适用于行内函数<br><strong>redux</strong><br>状态管理</route></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> combineReducers = <span class="function"><span class="params">reducers</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">state = &#123;&#125;, action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(reducers).reduce(</span><br><span class="line">      (nextState, key) =&gt; &#123;</span><br><span class="line">       nextState[key] = reducers[key](state[key], action);</span><br><span class="line">       <span class="keyword">return</span> nextState;</span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -1597,9 +1599,9 @@
 <p><strong>共享状态和负载均衡</strong><br>通过集群设置，我们不能再将内容缓存在内存中，因为每个工作进程都有自己的内存空间。</p>
 <p>如果我们需要使用集群设置来缓存内容，我们必须使用单独的实体并从所有工作者读取/写入该实体的API。<br>此实体可以是数据库服务器，或者如果要使用内存缓存，则可以使用Redis之类的服务器，或者创建一个带有读/写API的专用Node进程，供所有其他工作人员进行通信。<br><img src="/images/cluster-2.png" alt="cluster-result"></p>
 <p>工作进程状态通信<br><img src="/images/cluster-3.png" alt="cluster-result"><br>主进程进行身份验证,再发送给工作进程；<br>通过将这些会话的信息存储在共享数据库或Redis节点中，我们可以简单地在我们拥有的许多工作者之间共享状态。<br><img src="/images/cluster-4.png" alt="cluster-result"></p>
-<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>os 模块提供了一些操作系统相关的实用方法</p>
+<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>require成功后会缓存文件，数据驻留在内存中，导致GC频分和内存泄漏。<br>os 模块提供了一些操作系统相关的实用方法</p>
 <p><strong>常用方法</strong></p>
-
+<h3 id="FS"><a href="#FS" class="headerlink" title="FS"></a>FS</h3>
           
         
       

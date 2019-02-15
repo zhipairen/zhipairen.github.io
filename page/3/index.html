@@ -559,7 +559,7 @@
 </blockquote>
 <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>js引擎是执行js代码的程序或解释器。<br>其中有谷歌开发的 V8 引擎，开源项目，由C++ 编写而成，被应用在chrome 和 node中。<br>为了运行速度，V8转换 js 代码为更高效的 <em>机器代码</em>，它通过 <em>Just-In-Time(JIT)即时编译器</em>将js编译为机器码，不产生字节码或任何中间代码。<br><em>注：最新V8引擎优化，加入了转字节码处理</em></p>
 <p>v8在版本5.9以前，主要编译器为： full-codegen(简单快速编译产生机器码), Crankshaft(优化编码)</p>
-<h4 id="v8内部"><a href="#v8内部" class="headerlink" title="v8内部"></a>v8内部</h4><p><strong>经常使用的多个线程有以下：</strong></p>
+<h4 id="v8内部"><a href="#v8内部" class="headerlink" title="v8内部"></a>v8内部</h4><p><a href="https://mp.weixin.qq.com/s/e5CwofqIqxbPNLL9AVFa8w" target="_blank" rel="noopener">认识V8引擎</a><br><strong>经常使用的多个线程有以下：</strong></p>
 <ol>
 <li>主线程：获取代码，编译代码然后解析代码</li>
 <li>有一个单独的线程用于编译，因此主线程可以继续执行，前者可优化代码</li>
