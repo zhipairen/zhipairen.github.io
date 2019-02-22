@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
+<meta name="description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示；使用 Babylon 作为解析器 转化: 遍历令牌流，根据配置对节点增，更，移等操作；使用 babel-traverse 生成： 将经过转化的抽象语法树（AST)重新生">
 <meta name="keywords" content="js,babel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解babel">
 <meta property="og:url" content="http://yoursite.com/2017-2/03/17/了解babel/index.html">
 <meta property="og:site_name" content="纸牌人">
-<meta property="og:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
+<meta property="og:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示；使用 Babylon 作为解析器 转化: 遍历令牌流，根据配置对节点增，更，移等操作；使用 babel-traverse 生成： 将经过转化的抽象语法树（AST)重新生">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T10:04:37.000Z">
+<meta property="og:updated_time" content="2019-02-22T08:01:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解babel">
-<meta name="twitter:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示 转化: 遍历令牌流，根据配置对节点增，更，移等操作 生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap  注意: babel只转换新语法，需">
+<meta name="twitter:description" content="概念把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；  解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示；使用 Babylon 作为解析器 转化: 遍历令牌流，根据配置对节点增，更，移等操作；使用 babel-traverse 生成： 将经过转化的抽象语法树（AST)重新生">
 
 
 
@@ -365,9 +365,9 @@
       
         <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把ES6+代码转译（转码+编译) 到es5(语法层次);它将运行代码分为3个阶段：解析（Parse)，转化(Transform)，生成(Generate)；</p>
 <ul>
-<li>解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示</li>
-<li>转化: 遍历令牌流，根据配置对节点增，更，移等操作</li>
-<li>生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap</li>
+<li>解析：词法分析将代码转化为令牌流，语法分析将令牌流转化为AST表示；使用 <em>Babylon</em> 作为解析器</li>
+<li>转化: 遍历令牌流，根据配置对节点增，更，移等操作；使用 <em>babel-traverse</em></li>
+<li>生成： 将经过转化的抽象语法树（AST)重新生成代码，并创建SourceMap; 使用 <em>babel-generator</em></li>
 </ul>
 <p><strong>注意</strong>: babel只转换新语法，需要polyfill,<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babel是一个js编译器</a>;</p>
 <ul>
@@ -511,7 +511,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +522,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -533,7 +533,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
