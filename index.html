@@ -835,11 +835,16 @@
       
         
           
-            <p><strong>XSS</strong><br>XSS: 跨站脚本攻击<br>在用户进行一些操作时，启用插入的js脚本作出一些危险操作（危险js被启用)</p>
+            <p><strong>XSS</strong><br>XSS(跨站脚本攻击): 在页面注入恶意代码，比如 js脚本代码、包含<code>javascript:</code> 链接等<br>本质: 在用户进行一些操作时，<em>恶意代码未经过滤，与网站正常的代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。</em></p>
 <p>防御：</p>
+<ol>
+<li>防止输出HTML 中出现注入，对HTML做充分转义</li>
+<li>改成纯前端渲染，把代码和数据分隔开; 避免在字符串中拼接不可信数据<br>其他：</li>
+</ol>
 <ul>
-<li><strong>CSRF</strong><br>CSRF: 跨站请求伪造(因网站是信任浏览器的请求)<br><img src="/images/csrf.jpg" alt="CSRF攻击"><br>根据上图可简单理解：浏览器保留了网站A的cookie,然后访问危险网站B,危险网站盗用了用户信息去请求A,发生危险操作(转账之类)</li>
+<li>设置 HTTP-only Cookie</li>
 </ul>
+<p><strong>CSRF</strong><br>CSRF(跨站请求伪造): 攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者的注册凭证，冒充用户对网站执行某些危险操作的目的。<br><img src="/images/csrf.jpg" alt="CSRF攻击"><br>根据上图可简单理解：浏览器保留了网站A的cookie,然后访问危险网站B,危险网站盗用了用户信息去请求A,发生危险操作(转账之类)</p>
 <p>防御：</p>
 <ul>
 <li></li>
@@ -1337,6 +1342,14 @@
 <li>单位像素优化：采用jpeg,webp格式，有各自的内部无损算法</li>
 <li>像素总数优化：根据不同设备尺寸加载不同尺寸的图片(裁剪)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resize = <span class="function">(<span class="params">size</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> viewWidth</span><br><span class="line">  <span class="keyword">const</span> dpr = <span class="built_in">window</span>.devicePixelRatio</span><br><span class="line">  <span class="keyword">const</span> html = <span class="built_in">document</span>.documentElement</span><br><span class="line">  <span class="keyword">const</span> dataDpr = html.getAttribute(<span class="string">'data-dpr'</span>)</span><br><span class="line">  <span class="keyword">const</span> ratio = dataDpr ? (dpr / dataDpr) : dpr</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    viewWidth = +(html.getAttribute(<span class="string">'style'</span>).match(<span class="regexp">/(\d+)/</span>) || [])[<span class="number">1</span>]</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="keyword">const</span> w = html.offsetWidth</span><br><span class="line">    <span class="keyword">if</span> (w / dpr &gt; <span class="number">540</span>) &#123;</span><br><span class="line">      viewWidth = <span class="number">540</span> * dpr / <span class="number">10</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      viewWidth = w / <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  viewWidth = viewWidth * ratio</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Number</span>(viewWidth) &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">typeof</span> viewWidth === <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (size * viewWidth) / <span class="number">75</span> <span class="comment">// 75 is the 1/10 iphone6 deivce width pixel</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> size</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p><strong>体积</strong></p>
+<ul>
+<li>css/js等资源通过构建工具进行 合并，代码分割，抽取公共第三方，压缩；服务端的Gzip压缩；图片；字体等；首页资源的分离<br><strong>加载</strong></li>
+<li>按需加载资源，图片懒加载，css同步加载，延时加载，预加载<br><strong>缓存</strong></li>
+<li>静态资源由 CDN 进行缓存和分布；浏览器强缓存和协商缓存，资源内容变化生成hash更新缓存<br><strong>请求</strong></li>
+<li>请求并行；合并资源，减少请求；增加dns域并行请求资源<br><strong>页面结构</strong></li>
+<li>css顶部；js底部</li>
 </ul>
 
           
